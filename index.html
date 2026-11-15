@@ -1,0 +1,2576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#4f8cff">
+<meta name="description" content="OnLine Kids - a safer social app for kids.">
+<link rel="manifest" href="./manifest.json">
+<title>OnLine Kids</title>
+
+<style>
+:root{
+  --bg:#f4f7ff;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#68738a;
+  --line:#dfe5f2;
+  --blue:#4f8cff;
+  --purple:#8b5cf6;
+  --danger:#ef4444;
+  --green:#22c55e;
+  --shadow:0 10px 30px rgba(40,60,120,.12);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#eef4ff 0%,#f8f9ff 100%);
+  color:var(--text);
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.screen{
+  min-height:100vh;
+}
+
+.center{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.welcome{
+  width:min(430px,100%);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:30px 22px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.logo{
+  width:82px;
+  height:82px;
+  border-radius:24px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:#fff;
+  font-size:38px;
+  font-weight:900;
+}
+
+h1,h2,h3{
+  margin-top:0;
+}
+
+p{
+  line-height:1.5;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.primary{
+  border:0;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:white;
+  padding:13px 18px;
+  border-radius:14px;
+  font-weight:700;
+  width:100%;
+}
+
+.secondary{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  padding:11px 15px;
+  border-radius:12px;
+  font-weight:700;
+}
+
+.danger{
+  background:#fff0f0;
+  color:#b91c1c;
+  border:1px solid #fecaca;
+}
+
+.success{
+  background:#effdf4;
+  color:#15803d;
+  border:1px solid #bbf7d0;
+}
+
+.small{
+  font-size:13px;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  height:62px;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:900;
+  font-size:19px;
+}
+
+.brandIcon{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.userMini{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  overflow:hidden;
+  border:3px solid #fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.avatar.smallAvatar{
+  width:34px;
+  height:34px;
+  font-size:12px;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.app{
+  padding-bottom:85px;
+}
+
+.page{
+  display:none;
+  max-width:900px;
+  margin:auto;
+  padding:20px 15px;
+}
+
+.page.active{
+  display:block;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px rgba(40,60,120,.06);
+}
+
+.hero{
+  background:linear-gradient(135deg,#4f8cff,#8b5cf6);
+  color:#fff;
+  border-radius:24px;
+  padding:23px;
+  margin-bottom:18px;
+}
+
+.hero p{
+  opacity:.92;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+@media(min-width:700px){
+  .grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+.feature{
+  padding:18px;
+  border-radius:18px;
+  background:#f7f9ff;
+  border:1px solid var(--line);
+}
+
+.featureIcon{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.nav{
+  position:fixed;
+  z-index:30;
+  bottom:0;
+  left:0;
+  right:0;
+  height:72px;
+  background:#fff;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  padding:5px;
+}
+
+.nav button{
+  border:0;
+  background:transparent;
+  color:#69748a;
+  min-width:58px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.nav button.active{
+  color:var(--blue);
+}
+
+.navIcon{
+  display:block;
+  font-size:22px;
+  margin-bottom:2px;
+}
+
+input,
+textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  background:#fff;
+  color:var(--text);
+  outline:none;
+}
+
+input:focus,
+textarea:focus{
+  border-color:var(--blue);
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin:12px 0 6px;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.row>*{
+  flex:1;
+}
+
+.wrap{
+  flex-wrap:wrap;
+}
+
+.profileHeader{
+  text-align:center;
+  padding:25px 10px;
+}
+
+.profileAvatar{
+  width:100px;
+  height:100px;
+  margin:auto;
+  border-radius:50%;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:32px;
+  font-weight:900;
+  border:5px solid #fff;
+  box-shadow:0 6px 25px rgba(50,70,130,.18);
+}
+
+.profileAvatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.banner{
+  height:150px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#4f8cff,#8b5cf6);
+  background-size:cover;
+  background-position:center;
+  margin-bottom:-48px;
+}
+
+.profileContent{
+  position:relative;
+}
+
+.frame-blue{
+  box-shadow:0 0 0 5px #4f8cff,0 0 0 9px #dbeafe;
+}
+
+.frame-purple{
+  box-shadow:0 0 0 5px #8b5cf6,0 0 0 9px #ede9fe;
+}
+
+.frame-rainbow{
+  box-shadow:0 0 0 5px #f97316,0 0 0 8px #22c55e,0 0 0 11px #3b82f6;
+}
+
+.post{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:13px;
+  background:#fff;
+}
+
+.postHeader{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.postBody{
+  margin-top:12px;
+  white-space:pre-wrap;
+}
+
+.postActions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.postActions button{
+  border:1px solid var(--line);
+  background:#f7f9ff;
+  border-radius:10px;
+  padding:8px 12px;
+}
+
+.lock{
+  text-align:center;
+  padding:35px 15px;
+}
+
+.lockIcon{
+  font-size:52px;
+}
+
+.chatBox{
+  height:55vh;
+  min-height:350px;
+  overflow-y:auto;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+  background:#f7f9ff;
+}
+
+.message{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:9px 11px;
+  margin-bottom:8px;
+  max-width:80%;
+}
+
+.message.mine{
+  margin-left:auto;
+  background:#eef5ff;
+  border-color:#c9dcff;
+}
+
+.messageName{
+  font-size:11px;
+  font-weight:800;
+  color:var(--blue);
+  margin-bottom:3px;
+}
+
+.reel{
+  background:#111827;
+  color:#fff;
+  border-radius:20px;
+  padding:25px 18px;
+  margin-bottom:15px;
+  min-height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.reel video{
+  width:100%;
+  max-height:500px;
+  border-radius:15px;
+  margin-bottom:12px;
+}
+
+.statGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.stat{
+  background:#f7f9ff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+}
+
+.notice{
+  padding:12px;
+  border-radius:13px;
+  background:#eef5ff;
+  border:1px solid #c9dcff;
+  margin-bottom:12px;
+}
+
+.warning{
+  background:#fff8e6;
+  border-color:#fde68a;
+}
+
+.error{
+  color:#b91c1c;
+  background:#fff0f0;
+  border:1px solid #fecaca;
+  border-radius:12px;
+  padding:10px;
+  margin-top:10px;
+}
+
+.successBox{
+  color:#15803d;
+  background:#effdf4;
+  border:1px solid #bbf7d0;
+  border-radius:12px;
+  padding:10px;
+  margin-top:10px;
+}
+
+.frameChoice{
+  border:2px solid var(--line);
+  border-radius:15px;
+  background:#fff;
+  padding:15px;
+  text-align:center;
+}
+
+.frameChoice.selected{
+  border-color:var(--blue);
+  background:#eef5ff;
+}
+
+.framePreview{
+  width:60px;
+  height:60px;
+  margin:0 auto 8px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:30px 10px;
+}
+
+hr{
+  border:0;
+  border-top:1px solid var(--line);
+  margin:20px 0;
+}
+
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  padding:25px 10px;
+}
+
+.loading{
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<!-- WELCOME -->
+<div id="welcomeScreen" class="screen center">
+  <div class="welcome">
+    <div class="logo">O</div>
+
+    <h1>Welcome to OnLine Kids</h1>
+
+    <p class="muted">
+      A fun social space made with safety and parental controls in mind.
+    </p>
+
+    <button id="googleBtn" class="primary">
+      Continue with Google
+    </button>
+
+    <div id="authError"></div>
+
+    <p class="small muted" style="margin-top:18px;">
+      By continuing, you agree to use OnLine Kids safely and respectfully.
+    </p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appScreen" class="screen hidden">
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brandIcon">O</div>
+      <span>OnLine Kids</span>
+    </div>
+
+    <div class="userMini">
+      <span id="topCrystals">💎 0</span>
+      <div id="topAvatar" class="avatar smallAvatar">P</div>
+    </div>
+  </header>
+
+  <main class="app">
+
+    <!-- HOME -->
+    <section id="page-home" class="page active">
+
+      <div class="hero">
+        <h2 id="homeGreeting">Welcome!</h2>
+        <p>
+          Have fun, customize your profile, and connect safely.
+        </p>
+      </div>
+
+      <div class="grid">
+
+        <div class="feature">
+          <div class="featureIcon">👤</div>
+          <strong>Profile</strong>
+          <p class="muted small">Customize your profile.</p>
+          <button class="secondary" onclick="showPage('profile')">
+            Open
+          </button>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">🎨</div>
+          <strong>Avatar Studio</strong>
+          <p class="muted small">Choose your profile look.</p>
+          <button class="secondary" onclick="showPage('avatar')">
+            Customize
+          </button>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">📝</div>
+          <strong>Posts</strong>
+          <p class="muted small">Share something with the community.</p>
+          <button class="secondary" onclick="showPage('posts')">
+            View Posts
+          </button>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">🎬</div>
+          <strong>Reels</strong>
+          <p class="muted small">Watch short videos.</p>
+          <button class="secondary" onclick="showPage('reels')">
+            Open
+          </button>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">💬</div>
+          <strong>Chat</strong>
+          <p class="muted small">Chat when parent controls allow it.</p>
+          <button class="secondary" onclick="showPage('chat')">
+            Open
+          </button>
+        </div>
+
+        <div class="feature">
+          <div class="featureIcon">👨‍👩‍👧</div>
+          <strong>Parent Controls</strong>
+          <p class="muted small">Manage your child's settings.</p>
+          <button class="secondary" onclick="showPage('parent')">
+            Open
+          </button>
+        </div>
+
+      </div>
+
+      <div class="card" style="margin-top:18px;">
+        <h3>💎 Your Crystals</h3>
+        <div class="statGrid">
+          <div class="stat">
+            <strong id="homeCrystals">0</strong>
+            <span class="muted small">Crystals</span>
+          </div>
+          <div class="stat">
+            <strong id="homePosts">0</strong>
+            <span class="muted small">Posts</span>
+          </div>
+          <div class="stat">
+            <strong id="homeStatus">✓</strong>
+            <span class="muted small">Account</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PROFILE -->
+    <section id="page-profile" class="page">
+
+      <div class="card">
+        <div id="profileBanner" class="banner"></div>
+
+        <div class="profileContent">
+          <div id="profileAvatar" class="profileAvatar">
+            P
+          </div>
+
+          <div class="profileHeader">
+            <h2 id="profileName">Player</h2>
+            <p id="profileUsername" class="muted">@player</p>
+            <p id="profileBio" class="muted">
+              Welcome to my OnLine Kids profile!
+            </p>
+          </div>
+        </div>
+
+        <div class="statGrid">
+          <div class="stat">
+            <strong id="profileCrystalCount">0</strong>
+            <span class="muted small">💎 Crystals</span>
+          </div>
+
+          <div class="stat">
+            <strong id="profilePostCount">0</strong>
+            <span class="muted small">Posts</span>
+          </div>
+
+          <div class="stat">
+            <strong>✓</strong>
+            <span class="muted small">Member</span>
+          </div>
+        </div>
+
+        <br>
+
+        <button class="primary" onclick="showPage('avatar')">
+          🎨 Customize Profile
+        </button>
+      </div>
+
+    </section>
+
+    <!-- AVATAR -->
+    <section id="page-avatar" class="page">
+
+      <div class="card">
+        <h2>🎨 Avatar Studio</h2>
+
+        <div style="text-align:center;margin:20px;">
+          <div id="studioAvatar" class="profileAvatar">
+            P
+          </div>
+        </div>
+
+        <label>Display Name</label>
+        <input id="displayNameInput" maxlength="30" placeholder="Player">
+
+        <label>Username</label>
+        <input id="usernameInput" maxlength="20" placeholder="player123">
+
+        <label>Bio</label>
+        <textarea id="bioInput" maxlength="160" placeholder="Tell people about yourself"></textarea>
+
+        <label>Banner Image URL</label>
+        <input id="bannerInput" placeholder="https://example.com/banner.jpg">
+
+        <p class="small muted">
+          Only use images you have permission to use.
+        </p>
+
+        <hr>
+
+        <h3>Profile Frames</h3>
+
+        <div class="grid">
+
+          <button class="frameChoice" data-frame="none" onclick="selectFrame('none')">
+            <div class="framePreview"></div>
+            None
+          </button>
+
+          <button class="frameChoice" data-frame="blue" onclick="selectFrame('blue')">
+            <div class="framePreview frame-blue"></div>
+            Blue
+          </button>
+
+          <button class="frameChoice" data-frame="purple" onclick="selectFrame('purple')">
+            <div class="framePreview frame-purple"></div>
+            Purple
+          </button>
+
+          <button class="frameChoice" data-frame="rainbow" onclick="selectFrame('rainbow')">
+            <div class="framePreview frame-rainbow"></div>
+            Rainbow
+          </button>
+
+        </div>
+
+        <br>
+
+        <button class="primary" onclick="saveProfile()">
+          Save Profile
+        </button>
+
+        <div id="profileSaveMessage"></div>
+      </div>
+
+    </section>
+
+    <!-- POSTS -->
+    <section id="page-posts" class="page">
+
+      <div class="card">
+        <h2>📝 Create a Post</h2>
+
+        <textarea
+          id="postText"
+          maxlength="500"
+          placeholder="What do you want to share?"
+        ></textarea>
+
+        <br><br>
+
+        <button class="primary" onclick="createPost()">
+          Post
+        </button>
+
+        <div id="postMessage"></div>
+      </div>
+
+      <div class="card">
+        <h2>🌎 Community Posts</h2>
+        <div id="postsList">
+          <div class="loading">Loading posts...</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- REELS -->
+    <section id="page-reels" class="page">
+
+      <div id="reelsLocked" class="card lock hidden">
+        <div class="lockIcon">🔒</div>
+        <h2>Reels are locked</h2>
+
+        <p class="muted">
+          A parent must enable Reels through Parent Controls before
+          this feature can be used.
+        </p>
+
+        <button class="primary" onclick="showPage('parent')">
+          Parent Controls
+        </button>
+      </div>
+
+      <div id="reelsUnlocked" class="card hidden">
+        <h2>🎬 Reels</h2>
+
+        <div id="reelsList">
+          <div class="loading">Loading reels...</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CHAT -->
+    <section id="page-chat" class="page">
+
+      <div id="chatLocked" class="card lock hidden">
+        <div class="lockIcon">🔒</div>
+        <h2>Chat is locked</h2>
+
+        <p class="muted">
+          A parent must enable Chat through Parent Controls before
+          this feature can be used.
+        </p>
+
+        <button class="primary" onclick="showPage('parent')">
+          Parent Controls
+        </button>
+      </div>
+
+      <div id="chatUnlocked" class="card hidden">
+        <h2>💬 Community Chat</h2>
+
+        <div id="chatMessages" class="chatBox">
+          <div class="loading">Loading chat...</div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <input
+            id="chatInput"
+            maxlength="300"
+            placeholder="Write a message..."
+          >
+
+          <button class="primary" style="max-width:120px;" onclick="sendMessage()">
+            Send
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PARENT -->
+    <section id="page-parent" class="page">
+
+      <div class="card">
+
+        <h2>👨‍👩‍👧 Parent Controls</h2>
+
+        <div id="parentNotLinked">
+
+          <div class="notice warning">
+            <strong>Parent account required</strong>
+            <br>
+            A parent needs to create or sign into a parent account
+            and link it to this child's account.
+          </div>
+
+          <h3>1. Create or sign in to a parent account</h3>
+
+          <label>Parent Email</label>
+          <input
+            id="parentEmail"
+            type="email"
+            placeholder="parent@example.com"
+          >
+
+          <label>Parent Password</label>
+          <input
+            id="parentPassword"
+            type="password"
+            placeholder="Password"
+          >
+
+          <div class="row">
+            <button class="primary" onclick="parentCreateAccount()">
+              Create Parent Account
+            </button>
+
+            <button class="secondary" onclick="parentSignIn()">
+              Sign In
+            </button>
+          </div>
+
+          <div id="parentAuthMessage"></div>
+
+          <hr>
+
+          <h3>2. Link the child account</h3>
+
+          <p class="muted small">
+            Give the parent the child's link code shown below.
+          </p>
+
+          <div class="notice">
+            <strong>Child Link Code</strong>
+            <br><br>
+            <span id="childLinkCode"
+              style="font-size:25px;font-weight:900;letter-spacing:3px;">
+              ----
+            </span>
+          </div>
+
+          <p class="small muted">
+            The parent enters this code after signing into their parent account.
+          </p>
+
+          <label>Parent Link Code</label>
+          <input
+            id="parentLinkCodeInput"
+            maxlength="8"
+            placeholder="Enter child's code"
+          >
+
+          <button class="primary" onclick="linkParent()">
+            Link Parent Account
+          </button>
+
+          <div id="linkMessage"></div>
+
+        </div>
+
+        <div id="parentLinked" class="hidden">
+
+          <div class="successBox">
+            ✓ Parent account linked successfully.
+          </div>
+
+          <br>
+
+          <h3>Parent Settings</h3>
+
+          <div class="notice">
+            <strong>Parent controls protect this account.</strong>
+            <br>
+            Chat and Reels can only be enabled by the linked parent account.
+          </div>
+
+          <div class="card">
+            <h3>🔐 Parent Passcode</h3>
+
+            <p class="small muted">
+              Set a passcode that a parent can use to access these settings.
+            </p>
+
+            <input
+              id="parentPasscode"
+              type="password"
+              inputmode="numeric"
+              maxlength="8"
+              placeholder="4-8 digit passcode"
+            >
+
+            <br><br>
+
+            <button class="primary" onclick="setParentPasscode()">
+              Set Parent Passcode
+            </button>
+
+            <div id="passcodeMessage"></div>
+          </div>
+
+          <div class="card">
+            <h3>🎬 Reels</h3>
+
+            <p id="reelsSettingText" class="muted"></p>
+
+            <button
+              id="reelsToggle"
+              class="secondary"
+              onclick="toggleReels()">
+              Change
+            </button>
+          </div>
+
+          <div class="card">
+            <h3>💬 Chat</h3>
+
+            <p id="chatSettingText" class="muted"></p>
+
+            <button
+              id="chatToggle"
+              class="secondary"
+              onclick="toggleChat()">
+              Change
+            </button>
+          </div>
+
+          <button class="secondary" onclick="parentSignOut()">
+            Sign Out Parent Account
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ACCOUNT -->
+    <section id="page-account" class="page">
+
+      <div class="card">
+        <h2>⚙️ Account</h2>
+
+        <p>
+          Signed in as:
+          <strong id="accountEmail">Loading...</strong>
+        </p>
+
+        <hr>
+
+        <button class="secondary" onclick="signOutUser()">
+          Sign Out
+        </button>
+
+        <br><br>
+
+        <div class="notice">
+          <strong>OnLine Kids</strong>
+          <br>
+          Your profile and community data are stored using Firebase.
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+
+    <button onclick="showPage('home')" data-page="home" class="active">
+      <span class="navIcon">🏠</span>
+      Home
+    </button>
+
+    <button onclick="showPage('posts')" data-page="posts">
+      <span class="navIcon">📝</span>
+      Posts
+    </button>
+
+    <button onclick="showPage('reels')" data-page="reels">
+      <span class="navIcon">🎬</span>
+      Reels
+    </button>
+
+    <button onclick="showPage('chat')" data-page="chat">
+      <span class="navIcon">💬</span>
+      Chat
+    </button>
+
+    <button onclick="showPage('profile')" data-page="profile">
+      <span class="navIcon">👤</span>
+      Profile
+    </button>
+
+    <button onclick="showPage('parent')" data-page="parent">
+      <span class="navIcon">👨‍👩‍👧</span>
+      Parent
+    </button>
+
+  </nav>
+
+  <div class="footer">
+    OnLine Kids • Built with Firebase
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+
+/* FIREBASE */
+
+const firebaseConfig = {
+  apiKey:"AIzaSyCghg83g-uOUOT6PMSrS88sDeO55_HAfnI",
+  authDomain:"online-36946.firebaseapp.com",
+  projectId:"online-36946",
+  storageBucket:"online-36946.firebasestorage.app",
+  messagingSenderId:"862122300869",
+  appId:"1:862122300869:web:38f55cf996e0feb0b5e7ac",
+  measurementId:"G-6SRQR8M84V"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/*
+  Separate Firebase Auth instance for parent accounts.
+  This lets the child remain signed in while a parent
+  signs into the parent account.
+*/
+
+const parentApp = initializeApp(firebaseConfig,"ParentAuth");
+
+const parentAuth = getAuth(parentApp);
+
+
+/* GLOBAL STATE */
+
+let currentUser = null;
+let profile = null;
+let parentUser = null;
+let selectedFrame = "none";
+
+
+/* HELPERS */
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function escapeHTML(value){
+  if(value === undefined || value === null) return "";
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function initials(name){
+  const text = String(name || "Player").trim();
+
+  if(!text) return "P";
+
+  return text
+    .split(/\s+/)
+    .slice(0,2)
+    .map(x => x[0])
+    .join("")
+    .toUpperCase();
+}
+
+function makeLinkCode(){
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let code = "";
+
+  for(let i=0;i<8;i++){
+    code += chars[Math.floor(Math.random()*chars.length)];
+  }
+
+  return code;
+}
+
+async function sha256(text){
+  const data = new TextEncoder().encode(text);
+
+  const hash = await crypto.subtle.digest("SHA-256",data);
+
+  return Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2,"0"))
+    .join("");
+}
+
+
+/* NAVIGATION */
+
+window.showPage = function(page){
+
+  document.querySelectorAll(".page")
+    .forEach(el => el.classList.remove("active"));
+
+  const target = $("page-" + page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav button")
+    .forEach(btn => btn.classList.remove("active"));
+
+  const navButton =
+    document.querySelector('.nav button[data-page="' + page + '"]');
+
+  if(navButton){
+    navButton.classList.add("active");
+  }
+
+  if(page === "posts"){
+    loadPosts();
+  }
+
+  if(page === "reels"){
+    updateFeatureLocks();
+  }
+
+  if(page === "chat"){
+    updateFeatureLocks();
+
+    if(profile && profile.chatEnabled){
+      loadChat();
+    }
+  }
+
+  if(page === "parent"){
+    updateParentPage();
+  }
+};
+
+
+/* AVATAR */
+
+function avatarHTML(data,className="avatar"){
+
+  const frame = data?.avatarFrame || "none";
+
+  let frameClass = "";
+
+  if(frame === "blue"){
+    frameClass = "frame-blue";
+  }
+
+  if(frame === "purple"){
+    frameClass = "frame-purple";
+  }
+
+  if(frame === "rainbow"){
+    frameClass = "frame-rainbow";
+  }
+
+  const photo = data?.googlePhotoURL || "";
+
+  if(photo){
+
+    return `
+      <div class="${className} ${frameClass}">
+        <img src="${escapeHTML(photo)}" alt="">
+      </div>
+    `;
+
+  }
+
+  return `
+    <div class="${className} ${frameClass}">
+      ${escapeHTML(initials(data?.displayName))}
+    </div>
+  `;
+}
+
+
+/* PROFILE */
+
+async function loadProfile(){
+
+  if(!currentUser) return;
+
+  const ref = doc(db,"kidsUsers",currentUser.uid);
+
+  const snap = await getDoc(ref);
+
+  if(snap.exists()){
+
+    profile = snap.data();
+
+  }else{
+
+    profile = {
+
+      uid:currentUser.uid,
+
+      displayName:
+        currentUser.displayName || "Player",
+
+      username:
+        "player_" +
+        currentUser.uid
+          .slice(0,5)
+          .toLowerCase(),
+
+      bio:
+        "Welcome to my OnLine Kids profile!",
+
+      crystals:0,
+
+      blockedUsers:[],
+
+      timeoutUntil:0,
+
+      parentLinkCode:makeLinkCode(),
+
+      parentUid:null,
+
+      googlePhotoURL:
+        currentUser.photoURL || "",
+
+      avatarMode:"initials",
+
+      avatarFrame:"none",
+
+      bannerUrl:"",
+
+      reelsEnabled:false,
+
+      chatEnabled:false,
+
+      createdAt:serverTimestamp()
+
+    };
+
+    await setDoc(ref,profile);
+  }
+
+  selectedFrame = profile.avatarFrame || "none";
+
+  updateUI();
+
+}
+
+
+/* UPDATE UI */
+
+function updateUI(){
+
+  if(!profile) return;
+
+  $("homeGreeting").textContent =
+    "Welcome, " +
+    (profile.displayName || "Player") +
+    "!";
+
+  $("topCrystals").textContent =
+    "💎 " + (profile.crystals || 0);
+
+  $("homeCrystals").textContent =
+    profile.crystals || 0;
+
+  $("profileCrystalCount").textContent =
+    profile.crystals || 0;
+
+  $("profileName").textContent =
+    profile.displayName || "Player";
+
+  $("profileUsername").textContent =
+    "@" + (profile.username || "player");
+
+  $("profileBio").textContent =
+    profile.bio ||
+    "Welcome to my OnLine Kids profile!";
+
+  $("displayNameInput").value =
+    profile.displayName || "";
+
+  $("usernameInput").value =
+    profile.username || "";
+
+  $("bioInput").value =
+    profile.bio || "";
+
+  $("bannerInput").value =
+    profile.bannerUrl || "";
+
+  $("childLinkCode").textContent =
+    profile.parentLinkCode || "--------";
+
+  $("accountEmail").textContent =
+    currentUser?.email ||
+    currentUser?.displayName ||
+    "Signed in";
+
+  $("topAvatar").outerHTML =
+    avatarHTML(profile,"avatar smallAvatar");
+
+  $("profileAvatar").outerHTML =
+    avatarHTML(profile,"profileAvatar");
+
+  $("studioAvatar").outerHTML =
+    avatarHTML(profile,"profileAvatar");
+
+  const banner = $("profileBanner");
+
+  if(banner){
+
+    if(profile.bannerUrl){
+
+      banner.style.backgroundImage =
+        `url("${profile.bannerUrl}")`;
+
+    }else{
+
+      banner.style.backgroundImage =
+        "linear-gradient(135deg,#4f8cff,#8b5cf6)";
+
+    }
+  }
+
+  document.querySelectorAll(".frameChoice")
+    .forEach(btn => {
+
+      btn.classList.toggle(
+        "selected",
+        btn.dataset.frame === selectedFrame
+      );
+
+    });
+
+  updateFeatureLocks();
+}
+
+
+/* FRAME */
+
+window.selectFrame = function(frame){
+
+  selectedFrame = frame;
+
+  document.querySelectorAll(".frameChoice")
+    .forEach(btn => {
+
+      btn.classList.toggle(
+        "selected",
+        btn.dataset.frame === frame
+      );
+
+    });
+
+};
+
+
+/* SAVE PROFILE */
+
+window.saveProfile = async function(){
+
+  if(!currentUser) return;
+
+  const displayName =
+    $("displayNameInput").value.trim() ||
+    "Player";
+
+  const username =
+    $("usernameInput").value
+      .trim()
+      .replace(/\s+/g,"_")
+      .toLowerCase() ||
+    "player";
+
+  const bio =
+    $("bioInput").value.trim();
+
+  const bannerUrl =
+    $("bannerInput").value.trim();
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        displayName,
+        username,
+        bio,
+        bannerUrl,
+        avatarFrame:selectedFrame
+      }
+    );
+
+    profile.displayName = displayName;
+    profile.username = username;
+    profile.bio = bio;
+    profile.bannerUrl = bannerUrl;
+    profile.avatarFrame = selectedFrame;
+
+    updateUI();
+
+    $("profileSaveMessage").innerHTML =
+      `<div class="successBox">✓ Profile saved.</div>`;
+
+  }catch(error){
+
+    $("profileSaveMessage").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+};
+
+
+/* GOOGLE LOGIN */
+
+$("googleBtn").addEventListener("click",async()=>{
+
+  $("authError").innerHTML = "";
+
+  try{
+
+    const provider = new GoogleAuthProvider();
+
+    await signInWithPopup(auth,provider);
+
+  }catch(error){
+
+    $("authError").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+});
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(auth,async user=>{
+
+  if(user){
+
+    currentUser = user;
+
+    $("welcomeScreen")
+      .classList.add("hidden");
+
+    $("appScreen")
+      .classList.remove("hidden");
+
+    await loadProfile();
+
+    await loadPostCount();
+
+  }else{
+
+    currentUser = null;
+
+    $("welcomeScreen")
+      .classList.remove("hidden");
+
+    $("appScreen")
+      .classList.add("hidden");
+
+  }
+
+});
+
+
+/* SIGN OUT */
+
+window.signOutUser = async function(){
+
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+/* POSTS */
+
+window.createPost = async function(){
+
+  if(!currentUser || !profile) return;
+
+  const text =
+    $("postText").value.trim();
+
+  if(!text){
+
+    $("postMessage").innerHTML =
+      `<div class="error">Write something first.</div>`;
+
+    return;
+
+  }
+
+  try{
+
+    await addDoc(
+      collection(db,"kidsPosts"),
+      {
+        uid:currentUser.uid,
+        displayName:profile.displayName || "Player",
+        username:profile.username || "player",
+        photoURL:profile.googlePhotoURL || "",
+        text:text,
+        createdAt:serverTimestamp()
+      }
+    );
+
+    $("postText").value = "";
+
+    $("postMessage").innerHTML =
+      `<div class="successBox">✓ Your post was created.</div>`;
+
+    await loadPosts();
+
+    await loadPostCount();
+
+  }catch(error){
+
+    $("postMessage").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+};
+
+
+async function loadPosts(){
+
+  if(!currentUser) return;
+
+  const list = $("postsList");
+
+  list.innerHTML =
+    `<div class="loading">Loading posts...</div>`;
+
+  try{
+
+    const q = query(
+      collection(db,"kidsPosts"),
+      orderBy("createdAt","desc"),
+      limit(30)
+    );
+
+    const snap = await getDocs(q);
+
+    if(snap.empty){
+
+      list.innerHTML =
+        `<div class="empty">No posts yet. Be the first!</div>`;
+
+      return;
+
+    }
+
+    list.innerHTML = "";
+
+    snap.forEach(docSnap=>{
+
+      const post = docSnap.data();
+
+      const postEl =
+        document.createElement("div");
+
+      postEl.className = "post";
+
+      const photo =
+        post.photoURL ||
+        "";
+
+      let avatar;
+
+      if(photo){
+
+        avatar = `
+          <div class="avatar smallAvatar">
+            <img src="${escapeHTML(photo)}" alt="">
+          </div>
+        `;
+
+      }else{
+
+        avatar = `
+          <div class="avatar smallAvatar">
+            ${escapeHTML(initials(post.displayName))}
+          </div>
+        `;
+
+      }
+
+      postEl.innerHTML = `
+
+        <div class="postHeader">
+
+          ${avatar}
+
+          <div>
+            <strong>
+              ${escapeHTML(post.displayName || "Player")}
+            </strong>
+
+            <div class="muted small">
+              @${escapeHTML(post.username || "player")}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="postBody">
+          ${escapeHTML(post.text)}
+        </div>
+
+      `;
+
+      list.appendChild(postEl);
+
+    });
+
+  }catch(error){
+
+    list.innerHTML =
+      `<div class="error">
+        Unable to load posts.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+async function loadPostCount(){
+
+  if(!currentUser) return;
+
+  try{
+
+    const q = query(
+      collection(db,"kidsPosts"),
+      limit(100)
+    );
+
+    const snap = await getDocs(q);
+
+    let count = 0;
+
+    snap.forEach(docSnap=>{
+
+      if(docSnap.data().uid === currentUser.uid){
+        count++;
+      }
+
+    });
+
+    $("homePosts").textContent = count;
+
+    $("profilePostCount").textContent = count;
+
+  }catch(error){
+
+    console.log("Post count unavailable:",error);
+
+  }
+
+}
+
+
+/* FEATURE LOCKS */
+
+function updateFeatureLocks(){
+
+  if(!profile) return;
+
+  const reelsEnabled =
+    profile.reelsEnabled === true;
+
+  const chatEnabled =
+    profile.chatEnabled === true;
+
+  $("reelsLocked")
+    .classList.toggle("hidden",reelsEnabled);
+
+  $("reelsUnlocked")
+    .classList.toggle("hidden",!reelsEnabled);
+
+  $("chatLocked")
+    .classList.toggle("hidden",chatEnabled);
+
+  $("chatUnlocked")
+    .classList.toggle("hidden",!chatEnabled);
+
+  $("reelsSettingText").textContent =
+    reelsEnabled
+      ? "Reels are currently enabled."
+      : "Reels are currently locked.";
+
+  $("chatSettingText").textContent =
+    chatEnabled
+      ? "Chat is currently enabled."
+      : "Chat is currently locked.";
+}
+
+
+/* REELS */
+
+async function loadReels(){
+
+  if(!profile?.reelsEnabled) return;
+
+  const list = $("reelsList");
+
+  list.innerHTML =
+    `<div class="loading">Loading reels...</div>`;
+
+  try{
+
+    const q = query(
+      collection(db,"kidsReels"),
+      orderBy("createdAt","desc"),
+      limit(20)
+    );
+
+    const snap = await getDocs(q);
+
+    if(snap.empty){
+
+      list.innerHTML =
+        `<div class="empty">
+          No reels available yet.
+        </div>`;
+
+      return;
+
+    }
+
+    list.innerHTML = "";
+
+    snap.forEach(docSnap=>{
+
+      const reel = docSnap.data();
+
+      const el =
+        document.createElement("div");
+
+      el.className = "reel";
+
+      el.innerHTML = `
+
+        ${
+          reel.videoUrl
+          ? `<video controls src="${escapeHTML(reel.videoUrl)}"></video>`
+          : ""
+        }
+
+        <strong>
+          ${escapeHTML(reel.title || "Reel")}
+        </strong>
+
+        <div class="small">
+          ${escapeHTML(reel.description || "")}
+        </div>
+
+      `;
+
+      list.appendChild(el);
+
+    });
+
+  }catch(error){
+
+    list.innerHTML =
+      `<div class="error">
+        Unable to load reels.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+/* CHAT */
+
+async function loadChat(){
+
+  if(!profile?.chatEnabled) return;
+
+  const box = $("chatMessages");
+
+  box.innerHTML =
+    `<div class="loading">Loading chat...</div>`;
+
+  try{
+
+    const q = query(
+      collection(db,"kidsChat"),
+      orderBy("createdAt","asc"),
+      limit(100)
+    );
+
+    const snap = await getDocs(q);
+
+    box.innerHTML = "";
+
+    if(snap.empty){
+
+      box.innerHTML =
+        `<div class="empty">
+          No messages yet.
+        </div>`;
+
+      return;
+
+    }
+
+    snap.forEach(docSnap=>{
+
+      const msg = docSnap.data();
+
+      const el =
+        document.createElement("div");
+
+      const mine =
+        msg.uid === currentUser.uid;
+
+      el.className =
+        "message" +
+        (mine ? " mine" : "");
+
+      el.innerHTML = `
+
+        <div class="messageName">
+          ${escapeHTML(msg.displayName || "Player")}
+        </div>
+
+        <div>
+          ${escapeHTML(msg.text || "")}
+        </div>
+
+      `;
+
+      box.appendChild(el);
+
+    });
+
+    box.scrollTop = box.scrollHeight;
+
+  }catch(error){
+
+    box.innerHTML =
+      `<div class="error">
+        Unable to load chat.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+window.sendMessage = async function(){
+
+  if(!currentUser || !profile) return;
+
+  if(!profile.chatEnabled){
+
+    alert("Chat is locked by Parent Controls.");
+
+    return;
+
+  }
+
+  const input = $("chatInput");
+
+  const text =
+    input.value.trim();
+
+  if(!text) return;
+
+  try{
+
+    await addDoc(
+      collection(db,"kidsChat"),
+      {
+        uid:currentUser.uid,
+        displayName:
+          profile.displayName || "Player",
+        text:text,
+        createdAt:serverTimestamp()
+      }
+    );
+
+    input.value = "";
+
+    await loadChat();
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+/* PARENT AUTH */
+
+window.parentCreateAccount = async function(){
+
+  const email =
+    $("parentEmail").value.trim();
+
+  const password =
+    $("parentPassword").value;
+
+  if(!email || !password){
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="error">
+        Enter the parent email and password.
+      </div>`;
+
+    return;
+
+  }
+
+  if(password.length < 6){
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="error">
+        Firebase requires a password of at least 6 characters.
+      </div>`;
+
+    return;
+
+  }
+
+  try{
+
+    const result =
+      await createUserWithEmailAndPassword(
+        parentAuth,
+        email,
+        password
+      );
+
+    parentUser = result.user;
+
+    await setDoc(
+      doc(db,"parentAccounts",parentUser.uid),
+      {
+        uid:parentUser.uid,
+        email:parentUser.email,
+        adultVerified:false,
+        childUid:null,
+        createdAt:serverTimestamp()
+      },
+      {merge:true}
+    );
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="successBox">
+        ✓ Parent account created. Now link it to this child account.
+      </div>`;
+
+  }catch(error){
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+};
+
+
+window.parentSignIn = async function(){
+
+  const email =
+    $("parentEmail").value.trim();
+
+  const password =
+    $("parentPassword").value;
+
+  if(!email || !password){
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="error">
+        Enter the parent email and password.
+      </div>`;
+
+    return;
+
+  }
+
+  try{
+
+    const result =
+      await signInWithEmailAndPassword(
+        parentAuth,
+        email,
+        password
+      );
+
+    parentUser = result.user;
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="successBox">
+        ✓ Parent account signed in.
+      </div>`;
+
+    updateParentPage();
+
+  }catch(error){
+
+    $("parentAuthMessage").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+};
+
+
+onAuthStateChanged(parentAuth,user=>{
+
+  parentUser = user;
+
+  updateParentPage();
+
+});
+
+
+/* LINK PARENT */
+
+window.linkParent = async function(){
+
+  if(!currentUser){
+
+    $("linkMessage").innerHTML =
+      `<div class="error">Child account is not signed in.</div>`;
+
+    return;
+
+  }
+
+  if(!parentUser){
+
+    $("linkMessage").innerHTML =
+      `<div class="error">
+        The parent must sign in first.
+      </div>`;
+
+    return;
+
+  }
+
+  const code =
+    $("parentLinkCodeInput")
+      .value
+      .trim()
+      .toUpperCase();
+
+  if(!code){
+
+    $("linkMessage").innerHTML =
+      `<div class="error">Enter the child link code.</div>`;
+
+    return;
+
+  }
+
+  if(code !== profile.parentLinkCode){
+
+    $("linkMessage").innerHTML =
+      `<div class="error">
+        That link code is incorrect.
+      </div>`;
+
+    return;
+
+  }
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        parentUid:parentUser.uid
+      }
+    );
+
+    await setDoc(
+      doc(db,"parentAccounts",parentUser.uid),
+      {
+        uid:parentUser.uid,
+        email:parentUser.email,
+        childUid:currentUser.uid,
+        adultVerified:true
+      },
+      {merge:true}
+    );
+
+    profile.parentUid =
+      parentUser.uid;
+
+    $("linkMessage").innerHTML =
+      `<div class="successBox">
+        ✓ Parent account linked.
+      </div>`;
+
+    updateParentPage();
+
+  }catch(error){
+
+    $("linkMessage").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+};
+
+
+/* PARENT PAGE */
+
+async function updateParentPage(){
+
+  if(!profile) return;
+
+  const linked =
+    !!profile.parentUid;
+
+  $("parentNotLinked")
+    .classList.toggle("hidden",linked);
+
+  $("parentLinked")
+    .classList.toggle("hidden",!linked);
+
+  if(linked){
+
+    const isCorrectParent =
+      parentUser &&
+      parentUser.uid === profile.parentUid;
+
+    if(!isCorrectParent){
+
+      $("parentLinked").innerHTML = `
+
+        <div class="notice warning">
+          This child account is linked to a parent account.
+          <br><br>
+          Sign into the linked parent account to manage settings.
+        </div>
+
+        <button class="secondary"
+          onclick="showPage('home')">
+          Back
+        </button>
+
+      `;
+
+      return;
+
+    }
+
+    $("reelsSettingText").textContent =
+      profile.reelsEnabled
+        ? "Reels are enabled."
+        : "Reels are locked.";
+
+    $("chatSettingText").textContent =
+      profile.chatEnabled
+        ? "Chat is enabled."
+        : "Chat is locked.";
+
+  }
+
+}
+
+
+/* PARENT PASSCODE */
+
+window.setParentPasscode = async function(){
+
+  if(!parentUser ||
+     !profile ||
+     parentUser.uid !== profile.parentUid){
+
+    $("passcodeMessage").innerHTML =
+      `<div class="error">
+        Only the linked parent account can do this.
+      </div>`;
+
+    return;
+
+  }
+
+  const pass =
+    $("parentPasscode")
+      .value
+      .trim();
+
+  if(!/^\d{4,8}$/.test(pass)){
+
+    $("passcodeMessage").innerHTML =
+      `<div class="error">
+        Use a 4-8 digit passcode.
+      </div>`;
+
+    return;
+
+  }
+
+  try{
+
+    const hash =
+      await sha256(pass);
+
+    await setDoc(
+      doc(db,"parentAccounts",parentUser.uid),
+      {
+        parentPasscodeHash:hash,
+        parentControlsSet:true
+      },
+      {merge:true}
+    );
+
+    $("parentPasscode").value = "";
+
+    $("passcodeMessage").innerHTML =
+      `<div class="successBox">
+        ✓ Parent passcode saved.
+      </div>`;
+
+  }catch(error){
+
+    $("passcodeMessage").innerHTML =
+      `<div class="error">${escapeHTML(error.message)}</div>`;
+
+  }
+
+};
+
+
+/* TOGGLE REELS */
+
+window.toggleReels = async function(){
+
+  if(!parentUser ||
+     !profile ||
+     parentUser.uid !== profile.parentUid){
+
+    alert("Only the linked parent account can change this.");
+
+    return;
+
+  }
+
+  const newValue =
+    !profile.reelsEnabled;
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        reelsEnabled:newValue
+      }
+    );
+
+    profile.reelsEnabled =
+      newValue;
+
+    updateFeatureLocks();
+    updateParentPage();
+
+    if(newValue){
+      await loadReels();
+    }
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+/* TOGGLE CHAT */
+
+window.toggleChat = async function(){
+
+  if(!parentUser ||
+     !profile ||
+     parentUser.uid !== profile.parentUid){
+
+    alert("Only the linked parent account can change this.");
+
+    return;
+
+  }
+
+  const newValue =
+    !profile.chatEnabled;
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        chatEnabled:newValue
+      }
+    );
+
+    profile.chatEnabled =
+      newValue;
+
+    updateFeatureLocks();
+
+    if(newValue){
+      await loadChat();
+    }
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+/* PARENT SIGN OUT */
+
+window.parentSignOut = async function(){
+
+  try{
+
+    await signOut(parentAuth);
+
+    parentUser = null;
+
+    updateParentPage();
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+
+};
+
+
+/* LOAD REELS WHEN NEEDED */
+
+document
+  .querySelector('[data-page="reels"]')
+  ?.addEventListener("click",()=>{
+
+    if(profile?.reelsEnabled){
+      loadReels();
+    }
+
+  });
+
+
+/* SERVICE WORKER */
+
+if("serviceWorker" in navigator){
+
+  window.addEventListener("load",()=>{
+
+    navigator.serviceWorker
+      .register("./sw.js")
+      .catch(error=>{
+        console.log(
+          "Service worker registration failed:",
+          error
+        );
+      });
+
+  });
+
+}
+
+</script>
+
+</body>
+  </html>
