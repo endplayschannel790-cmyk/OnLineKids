@@ -3,215 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#4f8cff">
-<meta name="description" content="OnLine Kids - a safer social app for kids.">
+<meta name="theme-color" content="#3985ff">
+<meta name="description" content="OnLine Kids - a safer social app for kids">
 <link rel="manifest" href="./manifest.json">
 <title>OnLine Kids</title>
 
 <style>
+*{box-sizing:border-box}
 :root{
   --bg:#f4f7ff;
-  --card:#ffffff;
+  --card:#fff;
   --text:#172033;
-  --muted:#68738a;
+  --muted:#6b7488;
   --line:#dfe5f2;
-  --blue:#4f8cff;
-  --purple:#8b5cf6;
-  --danger:#ef4444;
+  --blue:#3985ff;
+  --purple:#984dff;
+  --red:#ef4444;
   --green:#22c55e;
-  --shadow:0 10px 30px rgba(40,60,120,.12);
 }
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#eef4ff 0%,#f8f9ff 100%);
+  font-family:Arial,sans-serif;
+  background:var(--bg);
   color:var(--text);
 }
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
-button,
-input,
-textarea{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.screen{
+#login{
   min-height:100vh;
-}
-
-.center{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:25px;
+  padding:20px;
 }
-
-.welcome{
-  width:min(430px,100%);
-  background:var(--card);
+.loginCard{
+  width:min(420px,100%);
+  background:white;
   border:1px solid var(--line);
   border-radius:28px;
   padding:30px 22px;
-  box-shadow:var(--shadow);
   text-align:center;
+  box-shadow:0 15px 45px rgba(50,70,130,.12);
 }
-
 .logo{
-  width:82px;
-  height:82px;
+  width:80px;
+  height:80px;
+  margin:auto;
   border-radius:24px;
-  margin:0 auto 18px;
   display:flex;
   align-items:center;
   justify-content:center;
   background:linear-gradient(135deg,var(--blue),var(--purple));
-  color:#fff;
-  font-size:38px;
+  color:white;
+  font-size:40px;
   font-weight:900;
 }
-
-h1,h2,h3{
-  margin-top:0;
-}
-
-p{
-  line-height:1.5;
-}
-
-.muted{
-  color:var(--muted);
-}
+h1,h2,h3{margin-top:0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
 
 .primary{
+  width:100%;
   border:0;
+  border-radius:13px;
+  padding:13px 16px;
   background:linear-gradient(135deg,var(--blue),var(--purple));
   color:white;
-  padding:13px 18px;
-  border-radius:14px;
-  font-weight:700;
-  width:100%;
+  font-weight:800;
 }
-
 .secondary{
   border:1px solid var(--line);
-  background:#fff;
+  background:white;
   color:var(--text);
-  padding:11px 15px;
   border-radius:12px;
+  padding:10px 14px;
   font-weight:700;
 }
-
 .danger{
-  background:#fff0f0;
+  background:#fff1f1;
   color:#b91c1c;
-  border:1px solid #fecaca;
+  border-color:#fecaca;
 }
 
-.success{
-  background:#effdf4;
-  color:#15803d;
-  border:1px solid #bbf7d0;
-}
-
-.small{
-  font-size:13px;
-}
-
+#app{display:none}
 .topbar{
+  height:62px;
   position:sticky;
   top:0;
   z-index:20;
-  height:62px;
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 15px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);
 }
-
 .brand{
   display:flex;
   align-items:center;
   gap:9px;
   font-weight:900;
-  font-size:19px;
 }
-
-.brandIcon{
+.brandLogo{
   width:35px;
   height:35px;
   border-radius:11px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
 }
-
-.userMini{
+.topRight{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
 }
-
-.avatar{
-  width:44px;
-  height:44px;
+.topAvatar{
+  width:34px;
+  height:34px;
   border-radius:50%;
   object-fit:cover;
   background:linear-gradient(135deg,var(--blue),var(--purple));
-  color:#fff;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
   overflow:hidden;
-  border:3px solid #fff;
-  box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
-
-.avatar.smallAvatar{
-  width:34px;
-  height:34px;
-  font-size:12px;
-}
-
-.avatar img{
+.topAvatar img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.app{
-  padding-bottom:85px;
-}
-
-.page{
-  display:none;
+main{
   max-width:900px;
   margin:auto;
-  padding:20px 15px;
+  padding:18px 15px 95px;
 }
-
-.page.active{
-  display:block;
-}
+.page{display:none}
+.page.active{display:block}
 
 .card{
   background:var(--card);
@@ -219,105 +155,57 @@ p{
   border-radius:20px;
   padding:18px;
   margin-bottom:15px;
-  box-shadow:0 5px 20px rgba(40,60,120,.06);
+  box-shadow:0 5px 20px rgba(40,60,120,.05);
 }
 
 .hero{
-  background:linear-gradient(135deg,#4f8cff,#8b5cf6);
-  color:#fff;
-  border-radius:24px;
+  border-radius:23px;
   padding:23px;
-  margin-bottom:18px;
+  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  margin-bottom:15px;
 }
-
-.hero p{
-  opacity:.92;
-}
+.hero p{opacity:.93}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
-
 @media(min-width:700px){
-  .grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
-  }
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
-.feature{
-  padding:18px;
-  border-radius:18px;
-  background:#f7f9ff;
+.tile{
+  background:white;
   border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
 }
+.tileIcon{font-size:27px}
+.tile button{margin-top:8px}
 
-.featureIcon{
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-.nav{
-  position:fixed;
-  z-index:30;
-  bottom:0;
-  left:0;
-  right:0;
-  height:72px;
-  background:#fff;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  padding:5px;
-}
-
-.nav button{
-  border:0;
-  background:transparent;
-  color:#69748a;
-  min-width:58px;
-  font-size:11px;
-  font-weight:700;
-}
-
-.nav button.active{
-  color:var(--blue);
-}
-
-.navIcon{
+label{
   display:block;
-  font-size:22px;
-  margin-bottom:2px;
+  font-weight:700;
+  font-size:13px;
+  margin:12px 0 6px;
 }
-
-input,
-textarea{
+input,textarea{
   width:100%;
   border:1px solid var(--line);
   border-radius:12px;
   padding:12px;
-  background:#fff;
-  color:var(--text);
   outline:none;
+  background:white;
+  color:var(--text);
 }
-
-input:focus,
-textarea:focus{
-  border-color:var(--blue);
-}
-
 textarea{
   min-height:100px;
   resize:vertical;
 }
-
-label{
-  display:block;
-  font-size:13px;
-  font-weight:700;
-  margin:12px 0 6px;
+input:focus,textarea:focus{
+  border-color:var(--blue);
 }
 
 .row{
@@ -325,177 +213,181 @@ label{
   gap:10px;
   align-items:center;
 }
+.row>*{flex:1}
 
-.row>*{
-  flex:1;
+.nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:72px;
+  background:white;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:30;
+}
+.nav button{
+  border:0;
+  background:transparent;
+  color:#6b7488;
+  font-size:11px;
+  font-weight:700;
+}
+.nav button.active{color:var(--blue)}
+.navIcon{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
 }
 
-.wrap{
-  flex-wrap:wrap;
-}
-
-.profileHeader{
-  text-align:center;
-  padding:25px 10px;
-}
-
-.profileAvatar{
-  width:100px;
-  height:100px;
-  margin:auto;
+.avatar{
+  width:90px;
+  height:90px;
   border-radius:50%;
-  overflow:hidden;
+  margin:auto;
   background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#fff;
-  font-size:32px;
+  font-size:30px;
   font-weight:900;
-  border:5px solid #fff;
-  box-shadow:0 6px 25px rgba(50,70,130,.18);
+  overflow:hidden;
+  border:4px solid white;
 }
-
-.profileAvatar img{
+.avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.banner{
-  height:150px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#4f8cff,#8b5cf6);
-  background-size:cover;
-  background-position:center;
-  margin-bottom:-48px;
+.frameBlue{
+  box-shadow:0 0 0 5px #3985ff,0 0 0 9px #dbeafe;
+}
+.framePurple{
+  box-shadow:0 0 0 5px #984dff,0 0 0 9px #ede9fe;
+}
+.frameRainbow{
+  box-shadow:0 0 0 4px #f97316,0 0 0 7px #22c55e,0 0 0 10px #3985ff;
 }
 
-.profileContent{
+.profileBanner{
+  height:145px;
+  border-radius:20px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  background-position:center;
+  background-size:cover;
+  margin-bottom:-45px;
+}
+.profileArea{
+  position:relative;
+  text-align:center;
+}
+.profileArea .avatar{
   position:relative;
 }
 
-.frame-blue{
-  box-shadow:0 0 0 5px #4f8cff,0 0 0 9px #dbeafe;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:15px;
 }
-
-.frame-purple{
-  box-shadow:0 0 0 5px #8b5cf6,0 0 0 9px #ede9fe;
+.stat{
+  background:#f7f9ff;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:10px;
+  text-align:center;
 }
-
-.frame-rainbow{
-  box-shadow:0 0 0 5px #f97316,0 0 0 8px #22c55e,0 0 0 11px #3b82f6;
+.stat strong{
+  display:block;
+  font-size:20px;
 }
 
 .post{
   border:1px solid var(--line);
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:13px;
-  background:#fff;
+  border-radius:17px;
+  padding:14px;
+  margin-bottom:12px;
+  background:white;
 }
-
-.postHeader{
+.postHead{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
 }
-
-.postBody{
-  margin-top:12px;
-  white-space:pre-wrap;
-}
-
-.postActions{
+.postAvatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:white;
   display:flex;
-  gap:8px;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+.postAvatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.postText{
+  white-space:pre-wrap;
   margin-top:12px;
 }
 
-.postActions button{
-  border:1px solid var(--line);
+.chat{
+  height:55vh;
+  min-height:330px;
+  overflow-y:auto;
   background:#f7f9ff;
-  border-radius:10px;
-  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+}
+.msg{
+  max-width:80%;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:9px 11px;
+  margin-bottom:8px;
+}
+.msg.mine{
+  margin-left:auto;
+  background:#eef5ff;
+  border-color:#c9dcff;
+}
+.msgName{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:800;
 }
 
 .lock{
   text-align:center;
   padding:35px 15px;
 }
-
-.lockIcon{
-  font-size:52px;
-}
-
-.chatBox{
-  height:55vh;
-  min-height:350px;
-  overflow-y:auto;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:12px;
-  background:#f7f9ff;
-}
-
-.message{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:9px 11px;
-  margin-bottom:8px;
-  max-width:80%;
-}
-
-.message.mine{
-  margin-left:auto;
-  background:#eef5ff;
-  border-color:#c9dcff;
-}
-
-.messageName{
-  font-size:11px;
-  font-weight:800;
-  color:var(--blue);
-  margin-bottom:3px;
-}
+.lockIcon{font-size:50px}
 
 .reel{
   background:#111827;
-  color:#fff;
+  color:white;
   border-radius:20px;
-  padding:25px 18px;
+  padding:15px;
   margin-bottom:15px;
-  min-height:300px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
 }
-
 .reel video{
-  width:100%;
-  max-height:500px;
-  border-radius:15px;
-  margin-bottom:12px;
-}
-
-.statGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.stat{
-  background:#f7f9ff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px;
-  text-align:center;
-}
-
-.stat strong{
   display:block;
-  font-size:20px;
+  width:100%;
+  max-height:550px;
+  border-radius:14px;
+  margin-bottom:10px;
 }
 
 .notice{
@@ -505,649 +397,607 @@ label{
   border:1px solid #c9dcff;
   margin-bottom:12px;
 }
-
 .warning{
   background:#fff8e6;
   border-color:#fde68a;
 }
-
-.error{
-  color:#b91c1c;
-  background:#fff0f0;
-  border:1px solid #fecaca;
-  border-radius:12px;
+.success{
   padding:10px;
-  margin-top:10px;
-}
-
-.successBox{
+  border-radius:12px;
   color:#15803d;
   background:#effdf4;
   border:1px solid #bbf7d0;
-  border-radius:12px;
-  padding:10px;
   margin-top:10px;
 }
-
+.error{
+  padding:10px;
+  border-radius:12px;
+  color:#b91c1c;
+  background:#fff0f0;
+  border:1px solid #fecaca;
+  margin-top:10px;
+}
+.empty{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+}
 .frameChoice{
   border:2px solid var(--line);
   border-radius:15px;
-  background:#fff;
-  padding:15px;
+  background:white;
+  padding:14px;
   text-align:center;
 }
-
 .frameChoice.selected{
   border-color:var(--blue);
   background:#eef5ff;
 }
-
 .framePreview{
-  width:60px;
-  height:60px;
-  margin:0 auto 8px;
+  width:55px;
+  height:55px;
   border-radius:50%;
   background:linear-gradient(135deg,var(--blue),var(--purple));
+  margin:0 auto 8px;
 }
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  padding:30px 10px;
-}
-
-hr{
-  border:0;
-  border-top:1px solid var(--line);
-  margin:20px 0;
-}
-
 .footer{
   text-align:center;
   color:var(--muted);
   font-size:12px;
-  padding:25px 10px;
-}
-
-.loading{
-  text-align:center;
-  padding:40px;
-  color:var(--muted);
+  padding:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- WELCOME -->
-<div id="welcomeScreen" class="screen center">
-  <div class="welcome">
+<!-- LOGIN -->
+<div id="login">
+  <div class="loginCard">
     <div class="logo">O</div>
 
-    <h1>Welcome to OnLine Kids</h1>
+    <h1>OnLine Kids</h1>
 
     <p class="muted">
-      A fun social space made with safety and parental controls in mind.
+      A fun social space with parent controls.
     </p>
 
-    <button id="googleBtn" class="primary">
+    <button id="googleLogin" class="primary">
       Continue with Google
     </button>
 
-    <div id="authError"></div>
+    <div id="loginMessage"></div>
 
-    <p class="small muted" style="margin-top:18px;">
-      By continuing, you agree to use OnLine Kids safely and respectfully.
+    <p class="small muted">
+      A Google account is required to use OnLine Kids.
     </p>
   </div>
 </div>
 
+
 <!-- APP -->
-<div id="appScreen" class="screen hidden">
-
-  <header class="topbar">
-    <div class="brand">
-      <div class="brandIcon">O</div>
-      <span>OnLine Kids</span>
-    </div>
-
-    <div class="userMini">
-      <span id="topCrystals">💎 0</span>
-      <div id="topAvatar" class="avatar smallAvatar">P</div>
-    </div>
-  </header>
-
-  <main class="app">
-
-    <!-- HOME -->
-    <section id="page-home" class="page active">
-
-      <div class="hero">
-        <h2 id="homeGreeting">Welcome!</h2>
-        <p>
-          Have fun, customize your profile, and connect safely.
-        </p>
-      </div>
-
-      <div class="grid">
-
-        <div class="feature">
-          <div class="featureIcon">👤</div>
-          <strong>Profile</strong>
-          <p class="muted small">Customize your profile.</p>
-          <button class="secondary" onclick="showPage('profile')">
-            Open
-          </button>
-        </div>
-
-        <div class="feature">
-          <div class="featureIcon">🎨</div>
-          <strong>Avatar Studio</strong>
-          <p class="muted small">Choose your profile look.</p>
-          <button class="secondary" onclick="showPage('avatar')">
-            Customize
-          </button>
-        </div>
-
-        <div class="feature">
-          <div class="featureIcon">📝</div>
-          <strong>Posts</strong>
-          <p class="muted small">Share something with the community.</p>
-          <button class="secondary" onclick="showPage('posts')">
-            View Posts
-          </button>
-        </div>
-
-        <div class="feature">
-          <div class="featureIcon">🎬</div>
-          <strong>Reels</strong>
-          <p class="muted small">Watch short videos.</p>
-          <button class="secondary" onclick="showPage('reels')">
-            Open
-          </button>
-        </div>
-
-        <div class="feature">
-          <div class="featureIcon">💬</div>
-          <strong>Chat</strong>
-          <p class="muted small">Chat when parent controls allow it.</p>
-          <button class="secondary" onclick="showPage('chat')">
-            Open
-          </button>
-        </div>
-
-        <div class="feature">
-          <div class="featureIcon">👨‍👩‍👧</div>
-          <strong>Parent Controls</strong>
-          <p class="muted small">Manage your child's settings.</p>
-          <button class="secondary" onclick="showPage('parent')">
-            Open
-          </button>
-        </div>
-
-      </div>
-
-      <div class="card" style="margin-top:18px;">
-        <h3>💎 Your Crystals</h3>
-        <div class="statGrid">
-          <div class="stat">
-            <strong id="homeCrystals">0</strong>
-            <span class="muted small">Crystals</span>
-          </div>
-          <div class="stat">
-            <strong id="homePosts">0</strong>
-            <span class="muted small">Posts</span>
-          </div>
-          <div class="stat">
-            <strong id="homeStatus">✓</strong>
-            <span class="muted small">Account</span>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- PROFILE -->
-    <section id="page-profile" class="page">
-
-      <div class="card">
-        <div id="profileBanner" class="banner"></div>
-
-        <div class="profileContent">
-          <div id="profileAvatar" class="profileAvatar">
-            P
-          </div>
-
-          <div class="profileHeader">
-            <h2 id="profileName">Player</h2>
-            <p id="profileUsername" class="muted">@player</p>
-            <p id="profileBio" class="muted">
-              Welcome to my OnLine Kids profile!
-            </p>
-          </div>
-        </div>
-
-        <div class="statGrid">
-          <div class="stat">
-            <strong id="profileCrystalCount">0</strong>
-            <span class="muted small">💎 Crystals</span>
-          </div>
-
-          <div class="stat">
-            <strong id="profilePostCount">0</strong>
-            <span class="muted small">Posts</span>
-          </div>
-
-          <div class="stat">
-            <strong>✓</strong>
-            <span class="muted small">Member</span>
-          </div>
-        </div>
-
-        <br>
-
-        <button class="primary" onclick="showPage('avatar')">
-          🎨 Customize Profile
-        </button>
-      </div>
-
-    </section>
-
-    <!-- AVATAR -->
-    <section id="page-avatar" class="page">
-
-      <div class="card">
-        <h2>🎨 Avatar Studio</h2>
-
-        <div style="text-align:center;margin:20px;">
-          <div id="studioAvatar" class="profileAvatar">
-            P
-          </div>
-        </div>
-
-        <label>Display Name</label>
-        <input id="displayNameInput" maxlength="30" placeholder="Player">
-
-        <label>Username</label>
-        <input id="usernameInput" maxlength="20" placeholder="player123">
-
-        <label>Bio</label>
-        <textarea id="bioInput" maxlength="160" placeholder="Tell people about yourself"></textarea>
-
-        <label>Banner Image URL</label>
-        <input id="bannerInput" placeholder="https://example.com/banner.jpg">
-
-        <p class="small muted">
-          Only use images you have permission to use.
-        </p>
-
-        <hr>
-
-        <h3>Profile Frames</h3>
-
-        <div class="grid">
-
-          <button class="frameChoice" data-frame="none" onclick="selectFrame('none')">
-            <div class="framePreview"></div>
-            None
-          </button>
-
-          <button class="frameChoice" data-frame="blue" onclick="selectFrame('blue')">
-            <div class="framePreview frame-blue"></div>
-            Blue
-          </button>
-
-          <button class="frameChoice" data-frame="purple" onclick="selectFrame('purple')">
-            <div class="framePreview frame-purple"></div>
-            Purple
-          </button>
-
-          <button class="frameChoice" data-frame="rainbow" onclick="selectFrame('rainbow')">
-            <div class="framePreview frame-rainbow"></div>
-            Rainbow
-          </button>
-
-        </div>
-
-        <br>
-
-        <button class="primary" onclick="saveProfile()">
-          Save Profile
-        </button>
-
-        <div id="profileSaveMessage"></div>
-      </div>
-
-    </section>
-
-    <!-- POSTS -->
-    <section id="page-posts" class="page">
-
-      <div class="card">
-        <h2>📝 Create a Post</h2>
-
-        <textarea
-          id="postText"
-          maxlength="500"
-          placeholder="What do you want to share?"
-        ></textarea>
-
-        <br><br>
-
-        <button class="primary" onclick="createPost()">
-          Post
-        </button>
-
-        <div id="postMessage"></div>
-      </div>
-
-      <div class="card">
-        <h2>🌎 Community Posts</h2>
-        <div id="postsList">
-          <div class="loading">Loading posts...</div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- REELS -->
-    <section id="page-reels" class="page">
-
-      <div id="reelsLocked" class="card lock hidden">
-        <div class="lockIcon">🔒</div>
-        <h2>Reels are locked</h2>
-
-        <p class="muted">
-          A parent must enable Reels through Parent Controls before
-          this feature can be used.
-        </p>
-
-        <button class="primary" onclick="showPage('parent')">
-          Parent Controls
-        </button>
-      </div>
-
-      <div id="reelsUnlocked" class="card hidden">
-        <h2>🎬 Reels</h2>
-
-        <div id="reelsList">
-          <div class="loading">Loading reels...</div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- CHAT -->
-    <section id="page-chat" class="page">
-
-      <div id="chatLocked" class="card lock hidden">
-        <div class="lockIcon">🔒</div>
-        <h2>Chat is locked</h2>
-
-        <p class="muted">
-          A parent must enable Chat through Parent Controls before
-          this feature can be used.
-        </p>
-
-        <button class="primary" onclick="showPage('parent')">
-          Parent Controls
-        </button>
-      </div>
-
-      <div id="chatUnlocked" class="card hidden">
-        <h2>💬 Community Chat</h2>
-
-        <div id="chatMessages" class="chatBox">
-          <div class="loading">Loading chat...</div>
-        </div>
-
-        <br>
-
-        <div class="row">
-          <input
-            id="chatInput"
-            maxlength="300"
-            placeholder="Write a message..."
-          >
-
-          <button class="primary" style="max-width:120px;" onclick="sendMessage()">
-            Send
-          </button>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- PARENT -->
-    <section id="page-parent" class="page">
-
-      <div class="card">
-
-        <h2>👨‍👩‍👧 Parent Controls</h2>
-
-        <div id="parentNotLinked">
-
-          <div class="notice warning">
-            <strong>Parent account required</strong>
-            <br>
-            A parent needs to create or sign into a parent account
-            and link it to this child's account.
-          </div>
-
-          <h3>1. Create or sign in to a parent account</h3>
-
-          <label>Parent Email</label>
-          <input
-            id="parentEmail"
-            type="email"
-            placeholder="parent@example.com"
-          >
-
-          <label>Parent Password</label>
-          <input
-            id="parentPassword"
-            type="password"
-            placeholder="Password"
-          >
-
-          <div class="row">
-            <button class="primary" onclick="parentCreateAccount()">
-              Create Parent Account
-            </button>
-
-            <button class="secondary" onclick="parentSignIn()">
-              Sign In
-            </button>
-          </div>
-
-          <div id="parentAuthMessage"></div>
-
-          <hr>
-
-          <h3>2. Link the child account</h3>
-
-          <p class="muted small">
-            Give the parent the child's link code shown below.
-          </p>
-
-          <div class="notice">
-            <strong>Child Link Code</strong>
-            <br><br>
-            <span id="childLinkCode"
-              style="font-size:25px;font-weight:900;letter-spacing:3px;">
-              ----
-            </span>
-          </div>
-
-          <p class="small muted">
-            The parent enters this code after signing into their parent account.
-          </p>
-
-          <label>Parent Link Code</label>
-          <input
-            id="parentLinkCodeInput"
-            maxlength="8"
-            placeholder="Enter child's code"
-          >
-
-          <button class="primary" onclick="linkParent()">
-            Link Parent Account
-          </button>
-
-          <div id="linkMessage"></div>
-
-        </div>
-
-        <div id="parentLinked" class="hidden">
-
-          <div class="successBox">
-            ✓ Parent account linked successfully.
-          </div>
-
-          <br>
-
-          <h3>Parent Settings</h3>
-
-          <div class="notice">
-            <strong>Parent controls protect this account.</strong>
-            <br>
-            Chat and Reels can only be enabled by the linked parent account.
-          </div>
-
-          <div class="card">
-            <h3>🔐 Parent Passcode</h3>
-
-            <p class="small muted">
-              Set a passcode that a parent can use to access these settings.
-            </p>
-
-            <input
-              id="parentPasscode"
-              type="password"
-              inputmode="numeric"
-              maxlength="8"
-              placeholder="4-8 digit passcode"
-            >
-
-            <br><br>
-
-            <button class="primary" onclick="setParentPasscode()">
-              Set Parent Passcode
-            </button>
-
-            <div id="passcodeMessage"></div>
-          </div>
-
-          <div class="card">
-            <h3>🎬 Reels</h3>
-
-            <p id="reelsSettingText" class="muted"></p>
-
-            <button
-              id="reelsToggle"
-              class="secondary"
-              onclick="toggleReels()">
-              Change
-            </button>
-          </div>
-
-          <div class="card">
-            <h3>💬 Chat</h3>
-
-            <p id="chatSettingText" class="muted"></p>
-
-            <button
-              id="chatToggle"
-              class="secondary"
-              onclick="toggleChat()">
-              Change
-            </button>
-          </div>
-
-          <button class="secondary" onclick="parentSignOut()">
-            Sign Out Parent Account
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ACCOUNT -->
-    <section id="page-account" class="page">
-
-      <div class="card">
-        <h2>⚙️ Account</h2>
-
-        <p>
-          Signed in as:
-          <strong id="accountEmail">Loading...</strong>
-        </p>
-
-        <hr>
-
-        <button class="secondary" onclick="signOutUser()">
-          Sign Out
-        </button>
-
-        <br><br>
-
-        <div class="notice">
-          <strong>OnLine Kids</strong>
-          <br>
-          Your profile and community data are stored using Firebase.
-        </div>
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- NAVIGATION -->
-  <nav class="nav">
-
-    <button onclick="showPage('home')" data-page="home" class="active">
-      <span class="navIcon">🏠</span>
-      Home
-    </button>
-
-    <button onclick="showPage('posts')" data-page="posts">
-      <span class="navIcon">📝</span>
-      Posts
-    </button>
-
-    <button onclick="showPage('reels')" data-page="reels">
-      <span class="navIcon">🎬</span>
-      Reels
-    </button>
-
-    <button onclick="showPage('chat')" data-page="chat">
-      <span class="navIcon">💬</span>
-      Chat
-    </button>
-
-    <button onclick="showPage('profile')" data-page="profile">
-      <span class="navIcon">👤</span>
-      Profile
-    </button>
-
-    <button onclick="showPage('parent')" data-page="parent">
-      <span class="navIcon">👨‍👩‍👧</span>
-      Parent
-    </button>
-
-  </nav>
-
-  <div class="footer">
-    OnLine Kids • Built with Firebase
+<div id="app">
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brandLogo">O</div>
+    <span>OnLine Kids</span>
   </div>
+
+  <div class="topRight">
+    <span id="crystalsTop">💎 0</span>
+    <div id="topAvatar" class="topAvatar">P</div>
+  </div>
+</header>
+
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="hero">
+    <h2 id="welcomeText">Welcome!</h2>
+    <p>
+      Explore OnLine Kids and customize your profile.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <div class="tile">
+      <div class="tileIcon">👤</div>
+      <h3>Profile</h3>
+      <p class="small muted">Customize your profile.</p>
+      <button class="secondary" onclick="go('profile')">
+        Open
+      </button>
+    </div>
+
+    <div class="tile">
+      <div class="tileIcon">🎨</div>
+      <h3>Avatar Studio</h3>
+      <p class="small muted">Customize your look.</p>
+      <button class="secondary" onclick="go('avatar')">
+        Customize
+      </button>
+    </div>
+
+    <div class="tile">
+      <div class="tileIcon">📝</div>
+      <h3>Posts</h3>
+      <p class="small muted">Share posts.</p>
+      <button class="secondary" onclick="go('posts')">
+        Open
+      </button>
+    </div>
+
+    <div class="tile">
+      <div class="tileIcon">🎬</div>
+      <h3>Reels</h3>
+      <p class="small muted">Watch short videos.</p>
+      <button class="secondary" onclick="go('reels')">
+        Open
+      </button>
+    </div>
+
+    <div class="tile">
+      <div class="tileIcon">💬</div>
+      <h3>Chat</h3>
+      <p class="small muted">Community chat.</p>
+      <button class="secondary" onclick="go('chat')">
+        Open
+      </button>
+    </div>
+
+    <div class="tile">
+      <div class="tileIcon">👨‍👩‍👧</div>
+      <h3>Parent Controls</h3>
+      <p class="small muted">Manage safety settings.</p>
+      <button class="secondary" onclick="go('parent')">
+        Open
+      </button>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h3>💎 Your Crystals</h3>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="homeCrystals">0</strong>
+        Crystals
+      </div>
+
+      <div class="stat">
+        <strong id="homePostCount">0</strong>
+        Posts
+      </div>
+
+      <div class="stat">
+        <strong>✓</strong>
+        Member
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+
+  <div class="card">
+
+    <div id="profileBanner" class="profileBanner"></div>
+
+    <div class="profileArea">
+
+      <div id="profileAvatar" class="avatar">
+        P
+      </div>
+
+      <h2 id="profileName">Player</h2>
+
+      <p id="profileUsername" class="muted">@player</p>
+
+      <p id="profileBio" class="muted">
+        Welcome to my profile!
+      </p>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong id="profileCrystals">0</strong>
+        💎
+      </div>
+
+      <div class="stat">
+        <strong id="profilePosts">0</strong>
+        Posts
+      </div>
+
+      <div class="stat">
+        <strong>✓</strong>
+        Member
+      </div>
+
+    </div>
+
+    <br>
+
+    <button class="primary" onclick="go('avatar')">
+      🎨 Customize Profile
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- AVATAR -->
+<section id="avatar" class="page">
+
+  <div class="card">
+
+    <h2>🎨 Avatar Studio</h2>
+
+    <div id="studioAvatar" class="avatar">
+      P
+    </div>
+
+    <label>Display Name</label>
+    <input id="displayName">
+
+    <label>Username</label>
+    <input id="username">
+
+    <label>Bio</label>
+    <textarea id="bio"></textarea>
+
+    <label>Banner Image URL</label>
+    <input id="bannerUrl" placeholder="https://example.com/image.jpg">
+
+    <p class="small muted">
+      Your Google profile picture is used automatically.
+    </p>
+
+    <hr>
+
+    <h3>Free Profile Frames</h3>
+
+    <div class="grid">
+
+      <button class="frameChoice" data-frame="none"
+        onclick="chooseFrame('none')">
+        <div class="framePreview"></div>
+        None
+      </button>
+
+      <button class="frameChoice" data-frame="blue"
+        onclick="chooseFrame('blue')">
+        <div class="framePreview frameBlue"></div>
+        Blue
+      </button>
+
+      <button class="frameChoice" data-frame="purple"
+        onclick="chooseFrame('purple')">
+        <div class="framePreview framePurple"></div>
+        Purple
+      </button>
+
+      <button class="frameChoice" data-frame="rainbow"
+        onclick="chooseFrame('rainbow')">
+        <div class="framePreview frameRainbow"></div>
+        Rainbow
+      </button>
+
+    </div>
+
+    <br>
+
+    <button class="primary" onclick="saveProfile()">
+      Save Profile
+    </button>
+
+    <div id="profileSave"></div>
+
+  </div>
+
+</section>
+
+
+<!-- POSTS -->
+<section id="posts" class="page">
+
+  <div class="card">
+
+    <h2>📝 Create a Post</h2>
+
+    <textarea
+      id="postText"
+      maxlength="500"
+      placeholder="What do you want to share?"
+    ></textarea>
+
+    <br><br>
+
+    <button class="primary" onclick="createPost()">
+      Publish Post
+    </button>
+
+    <div id="postStatus"></div>
+
+  </div>
+
+  <div class="card">
+
+    <h2>🌎 Posts</h2>
+
+    <div id="postsList">
+      <div class="empty">Loading posts...</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REELS -->
+<section id="reels" class="page">
+
+  <div id="reelsLocked" class="card lock">
+
+    <div class="lockIcon">🔒</div>
+
+    <h2>Reels are locked</h2>
+
+    <p class="muted">
+      A parent must enable Reels before they can be used.
+    </p>
+
+    <button class="primary" onclick="go('parent')">
+      Parent Controls
+    </button>
+
+  </div>
+
+  <div id="reelsOpen" class="card hidden">
+
+    <h2>🎬 Reels</h2>
+
+    <div id="reelsList">
+      <div class="empty">Loading reels...</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CHAT -->
+<section id="chat" class="page">
+
+  <div id="chatLocked" class="card lock">
+
+    <div class="lockIcon">🔒</div>
+
+    <h2>Chat is locked</h2>
+
+    <p class="muted">
+      A parent must enable Chat before it can be used.
+    </p>
+
+    <button class="primary" onclick="go('parent')">
+      Parent Controls
+    </button>
+
+  </div>
+
+  <div id="chatOpen" class="card hidden">
+
+    <h2>💬 Community Chat</h2>
+
+    <div id="chatMessages" class="chat"></div>
+
+    <br>
+
+    <div class="row">
+
+      <input
+        id="chatInput"
+        maxlength="300"
+        placeholder="Write a message..."
+      >
+
+      <button
+        class="primary"
+        style="max-width:110px"
+        onclick="sendChat()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PARENT -->
+<section id="parent" class="page">
+
+  <div class="card">
+
+    <h2>👨‍👩‍👧 Parent Controls</h2>
+
+    <div id="parentStart">
+
+      <div class="notice">
+        A parent uses their own Google account to connect to this child account.
+      </div>
+
+      <h3>Parent email</h3>
+
+      <p class="small muted">
+        Enter the Google email address belonging to the parent.
+      </p>
+
+      <input
+        id="parentEmail"
+        type="email"
+        placeholder="parent@example.com"
+      >
+
+      <br><br>
+
+      <button class="primary" onclick="requestParent()">
+        Request Parent Connection
+      </button>
+
+      <div id="parentRequestStatus"></div>
+
+      <hr>
+
+      <h3>Parent Sign In</h3>
+
+      <p class="small muted">
+        The parent must sign in with Google to approve the connection.
+      </p>
+
+      <button class="primary" onclick="parentGoogleLogin()">
+        Parent: Sign in with Google
+      </button>
+
+      <div id="parentLoginStatus"></div>
+
+    </div>
+
+
+    <div id="parentDashboard" class="hidden">
+
+      <div class="success">
+        ✓ Parent account connected.
+      </div>
+
+      <br>
+
+      <div class="card">
+
+        <h3>🎬 Reels</h3>
+
+        <p id="reelsStatus" class="muted"></p>
+
+        <button class="secondary"
+          onclick="toggleParentSetting('reelsEnabled')">
+          Enable / Disable
+        </button>
+
+      </div>
+
+      <div class="card">
+
+        <h3>💬 Chat</h3>
+
+        <p id="chatStatus" class="muted"></p>
+
+        <button class="secondary"
+          onclick="toggleParentSetting('chatEnabled')">
+          Enable / Disable
+        </button>
+
+      </div>
+
+      <div class="card">
+
+        <h3>✉️ Post Notifications</h3>
+
+        <p class="muted">
+          Parent email notifications are enabled for this account.
+        </p>
+
+        <strong id="parentNotificationEmail"></strong>
+
+      </div>
+
+      <button class="secondary"
+        onclick="parentSignOut()">
+        Sign Out Parent
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ACCOUNT -->
+<section id="account" class="page">
+
+  <div class="card">
+
+    <h2>⚙️ Account</h2>
+
+    <p>
+      Signed in as:
+      <strong id="accountEmail"></strong>
+    </p>
+
+    <button class="secondary" onclick="childSignOut()">
+      Sign Out
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<nav class="nav">
+
+  <button data-page="home" onclick="go('home')" class="active">
+    <span class="navIcon">🏠</span>
+    Home
+  </button>
+
+  <button data-page="posts" onclick="go('posts')">
+    <span class="navIcon">📝</span>
+    Posts
+  </button>
+
+  <button data-page="reels" onclick="go('reels')">
+    <span class="navIcon">🎬</span>
+    Reels
+  </button>
+
+  <button data-page="chat" onclick="go('chat')">
+    <span class="navIcon">💬</span>
+    Chat
+  </button>
+
+  <button data-page="profile" onclick="go('profile')">
+    <span class="navIcon">👤</span>
+    Profile
+  </button>
+
+  <button data-page="parent" onclick="go('parent')">
+    <span class="navIcon">👨‍👩‍👧</span>
+    Parent
+  </button>
+
+</nav>
 
 </div>
 
+
 <script type="module">
 
-import { initializeApp }
+import {initializeApp}
 from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 
 import {
@@ -1155,10 +1005,9 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 import {
   getFirestore,
@@ -1166,19 +1015,22 @@ import {
   getDoc,
   setDoc,
   updateDoc,
+  addDoc,
   collection,
   query,
   orderBy,
   limit,
+  onSnapshot,
   getDocs,
-  addDoc,
+  where,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 
 /* FIREBASE */
 
-const firebaseConfig = {
+const firebaseConfig={
   apiKey:"AIzaSyCghg83g-uOUOT6PMSrS88sDeO55_HAfnI",
   authDomain:"online-36946.firebaseapp.com",
   projectId:"online-36946",
@@ -1188,30 +1040,34 @@ const firebaseConfig = {
   measurementId:"G-6SRQR8M84V"
 };
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const app=initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const auth=getAuth(app);
+
+const db=getFirestore(app);
 
 
 /*
-  Separate Firebase Auth instance for parent accounts.
-  This lets the child remain signed in while a parent
-  signs into the parent account.
+  A second Firebase Auth instance is used for the parent.
+  This allows the child and parent Google accounts
+  to remain authenticated separately.
 */
 
-const parentApp = initializeApp(firebaseConfig,"ParentAuth");
+const parentApp=
+  initializeApp(firebaseConfig,"ParentAuth");
 
-const parentAuth = getAuth(parentApp);
+const parentAuth=getAuth(parentApp);
 
 
-/* GLOBAL STATE */
+/* STATE */
 
-let currentUser = null;
-let profile = null;
-let parentUser = null;
-let selectedFrame = "none";
+let childUser=null;
+let childProfile=null;
+let parentUser=null;
+let selectedFrame="none";
+
+let stopChatListener=null;
 
 
 /* HELPERS */
@@ -1220,10 +1076,9 @@ function $(id){
   return document.getElementById(id);
 }
 
-function escapeHTML(value){
-  if(value === undefined || value === null) return "";
+function esc(value){
 
-  return String(value)
+  return String(value ?? "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
@@ -1232,297 +1087,345 @@ function escapeHTML(value){
 }
 
 function initials(name){
-  const text = String(name || "Player").trim();
 
-  if(!text) return "P";
+  const parts=
+    String(name || "Player")
+      .trim()
+      .split(/\s+/);
 
-  return text
-    .split(/\s+/)
+  return parts
     .slice(0,2)
-    .map(x => x[0])
+    .map(x=>x[0] || "")
     .join("")
-    .toUpperCase();
-}
-
-function makeLinkCode(){
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-  let code = "";
-
-  for(let i=0;i<8;i++){
-    code += chars[Math.floor(Math.random()*chars.length)];
-  }
-
-  return code;
-}
-
-async function sha256(text){
-  const data = new TextEncoder().encode(text);
-
-  const hash = await crypto.subtle.digest("SHA-256",data);
-
-  return Array.from(new Uint8Array(hash))
-    .map(b => b.toString(16).padStart(2,"0"))
-    .join("");
+    .toUpperCase() || "P";
 }
 
 
 /* NAVIGATION */
 
-window.showPage = function(page){
+window.go=function(page){
 
-  document.querySelectorAll(".page")
-    .forEach(el => el.classList.remove("active"));
+  document
+    .querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
 
-  const target = $("page-" + page);
+  const target=$(page);
 
   if(target){
     target.classList.add("active");
   }
 
-  document.querySelectorAll(".nav button")
-    .forEach(btn => btn.classList.remove("active"));
+  document
+    .querySelectorAll(".nav button")
+    .forEach(b=>b.classList.remove("active"));
 
-  const navButton =
-    document.querySelector('.nav button[data-page="' + page + '"]');
+  const nav=
+    document.querySelector(
+      `.nav button[data-page="${page}"]`
+    );
 
-  if(navButton){
-    navButton.classList.add("active");
+  if(nav){
+    nav.classList.add("active");
   }
 
-  if(page === "posts"){
+  if(page==="posts"){
     loadPosts();
   }
 
-  if(page === "reels"){
-    updateFeatureLocks();
-  }
+  if(page==="reels"){
+    updateFeatureAccess();
 
-  if(page === "chat"){
-    updateFeatureLocks();
-
-    if(profile && profile.chatEnabled){
-      loadChat();
+    if(childProfile?.reelsEnabled){
+      loadReels();
     }
   }
 
-  if(page === "parent"){
-    updateParentPage();
+  if(page==="chat"){
+    updateFeatureAccess();
+
+    if(childProfile?.chatEnabled){
+      startChat();
+    }
+  }
+
+  if(page==="parent"){
+    updateParentUI();
   }
 };
 
 
-/* AVATAR */
+/* AVATAR HTML */
 
-function avatarHTML(data,className="avatar"){
+function avatarHTML(profile,className="avatar"){
 
-  const frame = data?.avatarFrame || "none";
+  let frame="";
 
-  let frameClass = "";
-
-  if(frame === "blue"){
-    frameClass = "frame-blue";
+  if(profile?.avatarFrame==="blue"){
+    frame="frameBlue";
   }
 
-  if(frame === "purple"){
-    frameClass = "frame-purple";
+  if(profile?.avatarFrame==="purple"){
+    frame="framePurple";
   }
 
-  if(frame === "rainbow"){
-    frameClass = "frame-rainbow";
+  if(profile?.avatarFrame==="rainbow"){
+    frame="frameRainbow";
   }
 
-  const photo = data?.googlePhotoURL || "";
+  const photo=
+    profile?.googlePhotoURL ||
+    "";
 
   if(photo){
 
     return `
-      <div class="${className} ${frameClass}">
-        <img src="${escapeHTML(photo)}" alt="">
+      <div class="${className} ${frame}">
+        <img src="${esc(photo)}" alt="">
       </div>
     `;
 
   }
 
   return `
-    <div class="${className} ${frameClass}">
-      ${escapeHTML(initials(data?.displayName))}
+    <div class="${className} ${frame}">
+      ${esc(initials(profile?.displayName))}
     </div>
   `;
 }
 
 
-/* PROFILE */
+/* CHILD GOOGLE LOGIN */
 
-async function loadProfile(){
+$("googleLogin").addEventListener("click",async()=>{
 
-  if(!currentUser) return;
+  $("loginMessage").innerHTML="";
 
-  const ref = doc(db,"kidsUsers",currentUser.uid);
+  try{
 
-  const snap = await getDoc(ref);
+    const provider=
+      new GoogleAuthProvider();
+
+    await signInWithPopup(
+      auth,
+      provider
+    );
+
+  }catch(error){
+
+    $("loginMessage").innerHTML=
+      `<div class="error">
+        ${esc(error.message)}
+      </div>`;
+
+  }
+
+});
+
+
+/* CHILD AUTH */
+
+onAuthStateChanged(auth,async user=>{
+
+  if(!user){
+
+    childUser=null;
+
+    $("login").style.display="flex";
+    $("app").style.display="none";
+
+    return;
+  }
+
+  childUser=user;
+
+  $("login").style.display="none";
+  $("app").style.display="block";
+
+  await loadChildProfile();
+
+});
+
+
+/* CHILD PROFILE */
+
+async function loadChildProfile(){
+
+  const ref=
+    doc(db,"kidsUsers",childUser.uid);
+
+  const snap=
+    await getDoc(ref);
 
   if(snap.exists()){
 
-    profile = snap.data();
+    childProfile=snap.data();
 
   }else{
 
-    profile = {
+    childProfile={
 
-      uid:currentUser.uid,
+      uid:childUser.uid,
 
       displayName:
-        currentUser.displayName || "Player",
+        childUser.displayName || "Player",
 
       username:
         "player_" +
-        currentUser.uid
-          .slice(0,5)
+        childUser.uid
+          .slice(0,6)
           .toLowerCase(),
 
       bio:
         "Welcome to my OnLine Kids profile!",
 
-      crystals:0,
-
-      blockedUsers:[],
-
-      timeoutUntil:0,
-
-      parentLinkCode:makeLinkCode(),
-
-      parentUid:null,
-
       googlePhotoURL:
-        currentUser.photoURL || "",
+        childUser.photoURL || "",
 
-      avatarMode:"initials",
+      bannerUrl:"",
 
       avatarFrame:"none",
 
-      bannerUrl:"",
+      crystals:0,
+
+      parentUid:null,
+
+      parentEmail:"",
 
       reelsEnabled:false,
 
       chatEnabled:false,
 
+      parentNotifications:true,
+
       createdAt:serverTimestamp()
 
     };
 
-    await setDoc(ref,profile);
+    await setDoc(ref,childProfile);
+
   }
 
-  selectedFrame = profile.avatarFrame || "none";
+  selectedFrame=
+    childProfile.avatarFrame || "none";
 
-  updateUI();
+  updateEverything();
 
 }
 
 
-/* UPDATE UI */
+/* UI */
 
-function updateUI(){
+function updateEverything(){
 
-  if(!profile) return;
+  if(!childProfile)return;
 
-  $("homeGreeting").textContent =
+  $("welcomeText").textContent=
     "Welcome, " +
-    (profile.displayName || "Player") +
+    (childProfile.displayName || "Player") +
     "!";
 
-  $("topCrystals").textContent =
-    "💎 " + (profile.crystals || 0);
+  $("crystalsTop").textContent=
+    "💎 " +
+    (childProfile.crystals || 0);
 
-  $("homeCrystals").textContent =
-    profile.crystals || 0;
+  $("homeCrystals").textContent=
+    childProfile.crystals || 0;
 
-  $("profileCrystalCount").textContent =
-    profile.crystals || 0;
+  $("profileCrystals").textContent=
+    childProfile.crystals || 0;
 
-  $("profileName").textContent =
-    profile.displayName || "Player";
+  $("profileName").textContent=
+    childProfile.displayName || "Player";
 
-  $("profileUsername").textContent =
-    "@" + (profile.username || "player");
+  $("profileUsername").textContent=
+    "@" +
+    (childProfile.username || "player");
 
-  $("profileBio").textContent =
-    profile.bio ||
+  $("profileBio").textContent=
+    childProfile.bio ||
     "Welcome to my OnLine Kids profile!";
 
-  $("displayNameInput").value =
-    profile.displayName || "";
+  $("displayName").value=
+    childProfile.displayName || "";
 
-  $("usernameInput").value =
-    profile.username || "";
+  $("username").value=
+    childProfile.username || "";
 
-  $("bioInput").value =
-    profile.bio || "";
+  $("bio").value=
+    childProfile.bio || "";
 
-  $("bannerInput").value =
-    profile.bannerUrl || "";
+  $("bannerUrl").value=
+    childProfile.bannerUrl || "";
 
-  $("childLinkCode").textContent =
-    profile.parentLinkCode || "--------";
+  $("accountEmail").textContent=
+    childUser.email || "";
 
-  $("accountEmail").textContent =
-    currentUser?.email ||
-    currentUser?.displayName ||
-    "Signed in";
+  $("profileAvatar").outerHTML=
+    avatarHTML(
+      childProfile,
+      "avatar"
+    );
 
-  $("topAvatar").outerHTML =
-    avatarHTML(profile,"avatar smallAvatar");
+  $("studioAvatar").outerHTML=
+    avatarHTML(
+      childProfile,
+      "avatar"
+    );
 
-  $("profileAvatar").outerHTML =
-    avatarHTML(profile,"profileAvatar");
+  $("topAvatar").outerHTML=
+    avatarHTML(
+      childProfile,
+      "topAvatar"
+    );
 
-  $("studioAvatar").outerHTML =
-    avatarHTML(profile,"profileAvatar");
+  const banner=
+    $("profileBanner");
 
-  const banner = $("profileBanner");
+  if(childProfile.bannerUrl){
 
-  if(banner){
+    banner.style.backgroundImage=
+      `url("${childProfile.bannerUrl}")`;
 
-    if(profile.bannerUrl){
+  }else{
 
-      banner.style.backgroundImage =
-        `url("${profile.bannerUrl}")`;
+    banner.style.backgroundImage=
+      "linear-gradient(135deg,#3985ff,#984dff)";
 
-    }else{
-
-      banner.style.backgroundImage =
-        "linear-gradient(135deg,#4f8cff,#8b5cf6)";
-
-    }
   }
 
-  document.querySelectorAll(".frameChoice")
-    .forEach(btn => {
+  document
+    .querySelectorAll(".frameChoice")
+    .forEach(button=>{
 
-      btn.classList.toggle(
+      button.classList.toggle(
         "selected",
-        btn.dataset.frame === selectedFrame
+        button.dataset.frame===selectedFrame
       );
 
     });
 
-  updateFeatureLocks();
+  updateFeatureAccess();
+
+  updateParentUI();
+
+  loadPostCount();
+
 }
 
 
 /* FRAME */
 
-window.selectFrame = function(frame){
+window.chooseFrame=function(frame){
 
-  selectedFrame = frame;
+  selectedFrame=frame;
 
-  document.querySelectorAll(".frameChoice")
-    .forEach(btn => {
+  document
+    .querySelectorAll(".frameChoice")
+    .forEach(button=>{
 
-      btn.classList.toggle(
+      button.classList.toggle(
         "selected",
-        btn.dataset.frame === frame
+        button.dataset.frame===frame
       );
 
     });
@@ -1532,31 +1435,37 @@ window.selectFrame = function(frame){
 
 /* SAVE PROFILE */
 
-window.saveProfile = async function(){
+window.saveProfile=async function(){
 
-  if(!currentUser) return;
+  const displayName=
+    $("displayName")
+      .value
+      .trim() || "Player";
 
-  const displayName =
-    $("displayNameInput").value.trim() ||
-    "Player";
-
-  const username =
-    $("usernameInput").value
+  const username=
+    $("username")
+      .value
       .trim()
-      .replace(/\s+/g,"_")
-      .toLowerCase() ||
+      .toLowerCase()
+      .replace(/[^a-z0-9_]/g,"")
+      .slice(0,20) ||
     "player";
 
-  const bio =
-    $("bioInput").value.trim();
+  const bio=
+    $("bio")
+      .value
+      .trim()
+      .slice(0,160);
 
-  const bannerUrl =
-    $("bannerInput").value.trim();
+  const bannerUrl=
+    $("bannerUrl")
+      .value
+      .trim();
 
   try{
 
     await updateDoc(
-      doc(db,"kidsUsers",currentUser.uid),
+      doc(db,"kidsUsers",childUser.uid),
       {
         displayName,
         username,
@@ -1566,93 +1475,34 @@ window.saveProfile = async function(){
       }
     );
 
-    profile.displayName = displayName;
-    profile.username = username;
-    profile.bio = bio;
-    profile.bannerUrl = bannerUrl;
-    profile.avatarFrame = selectedFrame;
+    childProfile.displayName=
+      displayName;
 
-    updateUI();
+    childProfile.username=
+      username;
 
-    $("profileSaveMessage").innerHTML =
-      `<div class="successBox">✓ Profile saved.</div>`;
+    childProfile.bio=
+      bio;
 
-  }catch(error){
+    childProfile.bannerUrl=
+      bannerUrl;
 
-    $("profileSaveMessage").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
+    childProfile.avatarFrame=
+      selectedFrame;
 
-  }
+    updateEverything();
 
-};
-
-
-/* GOOGLE LOGIN */
-
-$("googleBtn").addEventListener("click",async()=>{
-
-  $("authError").innerHTML = "";
-
-  try{
-
-    const provider = new GoogleAuthProvider();
-
-    await signInWithPopup(auth,provider);
+    $("profileSave").innerHTML=
+      `<div class="success">
+        ✓ Profile saved.
+      </div>`;
 
   }catch(error){
 
-    $("authError").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
-
-  }
-
-});
-
-
-/* AUTH STATE */
-
-onAuthStateChanged(auth,async user=>{
-
-  if(user){
-
-    currentUser = user;
-
-    $("welcomeScreen")
-      .classList.add("hidden");
-
-    $("appScreen")
-      .classList.remove("hidden");
-
-    await loadProfile();
-
-    await loadPostCount();
-
-  }else{
-
-    currentUser = null;
-
-    $("welcomeScreen")
-      .classList.remove("hidden");
-
-    $("appScreen")
-      .classList.add("hidden");
-
-  }
-
-});
-
-
-/* SIGN OUT */
-
-window.signOutUser = async function(){
-
-  try{
-
-    await signOut(auth);
-
-  }catch(error){
-
-    alert(error.message);
+    $("profileSave").innerHTML=
+      `<div class="error">
+        ${esc(error.message)}
+      </div>`;
 
   }
 
@@ -1661,17 +1511,19 @@ window.signOutUser = async function(){
 
 /* POSTS */
 
-window.createPost = async function(){
+window.createPost=async function(){
 
-  if(!currentUser || !profile) return;
-
-  const text =
-    $("postText").value.trim();
+  const text=
+    $("postText")
+      .value
+      .trim();
 
   if(!text){
 
-    $("postMessage").innerHTML =
-      `<div class="error">Write something first.</div>`;
+    $("postStatus").innerHTML=
+      `<div class="error">
+        Write something first.
+      </div>`;
 
     return;
 
@@ -1682,19 +1534,68 @@ window.createPost = async function(){
     await addDoc(
       collection(db,"kidsPosts"),
       {
-        uid:currentUser.uid,
-        displayName:profile.displayName || "Player",
-        username:profile.username || "player",
-        photoURL:profile.googlePhotoURL || "",
+        uid:childUser.uid,
+
+        displayName:
+          childProfile.displayName ||
+          "Player",
+
+        username:
+          childProfile.username ||
+          "player",
+
+        photoURL:
+          childProfile.googlePhotoURL ||
+          childUser.photoURL ||
+          "",
+
         text:text,
-        createdAt:serverTimestamp()
+
+        createdAt:
+          serverTimestamp()
+
       }
     );
 
-    $("postText").value = "";
 
-    $("postMessage").innerHTML =
-      `<div class="successBox">✓ Your post was created.</div>`;
+    /*
+      This creates an email request document.
+      Firebase Trigger Email can send this document
+      to the parent's email address.
+    */
+
+    if(
+      childProfile.parentEmail &&
+      childProfile.parentNotifications
+    ){
+
+      await addDoc(
+        collection(db,"mail"),
+        {
+          to:childProfile.parentEmail,
+
+          message:{
+            subject:
+              "OnLine Kids - Your child made a new post",
+
+            html:
+              `<p>Your child made a new post on OnLine Kids.</p>`
+          },
+
+          createdAt:
+            serverTimestamp()
+        }
+      );
+
+    }
+
+
+    $("postText").value="";
+
+    $("postStatus").innerHTML=
+      `<div class="success">
+        ✓ Post published.
+      </div>`;
 
     await loadPosts();
 
@@ -1702,8 +1603,10 @@ window.createPost = async function(){
 
   }catch(error){
 
-    $("postMessage").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
+    $("postStatus").innerHTML=
+      `<div class="error">
+        ${esc(error.message)}
+      </div>`;
 
   }
 
@@ -1712,238 +1615,85 @@ window.createPost = async function(){
 
 async function loadPosts(){
 
-  if(!currentUser) return;
+  const list=
+    $("postsList");
 
-  const list = $("postsList");
-
-  list.innerHTML =
-    `<div class="loading">Loading posts...</div>`;
+  list.innerHTML=
+    `<div class="empty">Loading posts...</div>`;
 
   try{
 
-    const q = query(
-      collection(db,"kidsPosts"),
-      orderBy("createdAt","desc"),
-      limit(30)
-    );
+    const q=
+      query(
+        collection(db,"kidsPosts"),
+        orderBy("createdAt","desc"),
+        limit(50)
+      );
 
-    const snap = await getDocs(q);
+    const snap=
+      await getDocs(q);
+
+    list.innerHTML="";
 
     if(snap.empty){
 
-      list.innerHTML =
-        `<div class="empty">No posts yet. Be the first!</div>`;
-
-      return;
-
-    }
-
-    list.innerHTML = "";
-
-    snap.forEach(docSnap=>{
-
-      const post = docSnap.data();
-
-      const postEl =
-        document.createElement("div");
-
-      postEl.className = "post";
-
-      const photo =
-        post.photoURL ||
-        "";
-
-      let avatar;
-
-      if(photo){
-
-        avatar = `
-          <div class="avatar smallAvatar">
-            <img src="${escapeHTML(photo)}" alt="">
-          </div>
-        `;
-
-      }else{
-
-        avatar = `
-          <div class="avatar smallAvatar">
-            ${escapeHTML(initials(post.displayName))}
-          </div>
-        `;
-
-      }
-
-      postEl.innerHTML = `
-
-        <div class="postHeader">
-
-          ${avatar}
-
-          <div>
-            <strong>
-              ${escapeHTML(post.displayName || "Player")}
-            </strong>
-
-            <div class="muted small">
-              @${escapeHTML(post.username || "player")}
-            </div>
-          </div>
-
-        </div>
-
-        <div class="postBody">
-          ${escapeHTML(post.text)}
-        </div>
-
-      `;
-
-      list.appendChild(postEl);
-
-    });
-
-  }catch(error){
-
-    list.innerHTML =
-      `<div class="error">
-        Unable to load posts.
-        <br><br>
-        ${escapeHTML(error.message)}
-      </div>`;
-
-  }
-
-}
-
-
-async function loadPostCount(){
-
-  if(!currentUser) return;
-
-  try{
-
-    const q = query(
-      collection(db,"kidsPosts"),
-      limit(100)
-    );
-
-    const snap = await getDocs(q);
-
-    let count = 0;
-
-    snap.forEach(docSnap=>{
-
-      if(docSnap.data().uid === currentUser.uid){
-        count++;
-      }
-
-    });
-
-    $("homePosts").textContent = count;
-
-    $("profilePostCount").textContent = count;
-
-  }catch(error){
-
-    console.log("Post count unavailable:",error);
-
-  }
-
-}
-
-
-/* FEATURE LOCKS */
-
-function updateFeatureLocks(){
-
-  if(!profile) return;
-
-  const reelsEnabled =
-    profile.reelsEnabled === true;
-
-  const chatEnabled =
-    profile.chatEnabled === true;
-
-  $("reelsLocked")
-    .classList.toggle("hidden",reelsEnabled);
-
-  $("reelsUnlocked")
-    .classList.toggle("hidden",!reelsEnabled);
-
-  $("chatLocked")
-    .classList.toggle("hidden",chatEnabled);
-
-  $("chatUnlocked")
-    .classList.toggle("hidden",!chatEnabled);
-
-  $("reelsSettingText").textContent =
-    reelsEnabled
-      ? "Reels are currently enabled."
-      : "Reels are currently locked.";
-
-  $("chatSettingText").textContent =
-    chatEnabled
-      ? "Chat is currently enabled."
-      : "Chat is currently locked.";
-}
-
-
-/* REELS */
-
-async function loadReels(){
-
-  if(!profile?.reelsEnabled) return;
-
-  const list = $("reelsList");
-
-  list.innerHTML =
-    `<div class="loading">Loading reels...</div>`;
-
-  try{
-
-    const q = query(
-      collection(db,"kidsReels"),
-      orderBy("createdAt","desc"),
-      limit(20)
-    );
-
-    const snap = await getDocs(q);
-
-    if(snap.empty){
-
-      list.innerHTML =
+      list.innerHTML=
         `<div class="empty">
-          No reels available yet.
+          No posts yet.
         </div>`;
 
       return;
 
     }
 
-    list.innerHTML = "";
-
     snap.forEach(docSnap=>{
 
-      const reel = docSnap.data();
+      const post=
+        docSnap.data();
 
-      const el =
+      const el=
         document.createElement("div");
 
-      el.className = "reel";
+      el.className="post";
 
-      el.innerHTML = `
+      const photo=
+        post.photoURL || "";
 
-        ${
-          reel.videoUrl
-          ? `<video controls src="${escapeHTML(reel.videoUrl)}"></video>`
-          : ""
-        }
+      const avatar=
+        photo
+        ?
+        `
+        <div class="postAvatar">
+          <img src="${esc(photo)}" alt="">
+        </div>
+        `
+        :
+        `
+        <div class="postAvatar">
+          ${esc(initials(post.displayName))}
+        </div>
+        `;
 
-        <strong>
-          ${escapeHTML(reel.title || "Reel")}
-        </strong>
+      el.innerHTML=`
 
-        <div class="small">
-          ${escapeHTML(reel.description || "")}
+        <div class="postHead">
+
+          ${avatar}
+
+          <div>
+            <strong>
+              ${esc(post.displayName || "Player")}
+            </strong>
+
+            <div class="small muted">
+              @${esc(post.username || "player")}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="postText">
+          ${esc(post.text)}
         </div>
 
       `;
@@ -1954,11 +1704,157 @@ async function loadReels(){
 
   }catch(error){
 
-    list.innerHTML =
+    list.innerHTML=
       `<div class="error">
-        Unable to load reels.
+        Posts could not load.
         <br><br>
-        ${escapeHTML(error.message)}
+        ${esc(error.message)}
+      </div>`;
+
+  }
+
+}
+
+
+/* POST COUNT */
+
+async function loadPostCount(){
+
+  try{
+
+    const q=
+      query(
+        collection(db,"kidsPosts"),
+        where("uid","==",childUser.uid),
+        limit(100)
+      );
+
+    const snap=
+      await getDocs(q);
+
+    $("homePostCount").textContent=
+      snap.size;
+
+    $("profilePosts").textContent=
+      snap.size;
+
+  }catch(error){
+
+    console.log(
+      "Post count error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* REELS / CHAT ACCESS */
+
+function updateFeatureAccess(){
+
+  const reels=
+    childProfile?.reelsEnabled === true;
+
+  const chat=
+    childProfile?.chatEnabled === true;
+
+  $("reelsLocked")
+    .classList.toggle("hidden",reels);
+
+  $("reelsOpen")
+    .classList.toggle("hidden",!reels);
+
+  $("chatLocked")
+    .classList.toggle("hidden",chat);
+
+  $("chatOpen")
+    .classList.toggle("hidden",!chat);
+
+}
+
+
+/* REELS */
+
+async function loadReels(){
+
+  const list=
+    $("reelsList");
+
+  list.innerHTML=
+    `<div class="empty">Loading reels...</div>`;
+
+  try{
+
+    const q=
+      query(
+        collection(db,"kidsReels"),
+        orderBy("createdAt","desc"),
+        limit(30)
+      );
+
+    const snap=
+      await getDocs(q);
+
+    list.innerHTML="";
+
+    if(snap.empty){
+
+      list.innerHTML=
+        `<div class="empty">
+          No reels available yet.
+        </div>`;
+
+      return;
+
+    }
+
+    snap.forEach(docSnap=>{
+
+      const reel=
+        docSnap.data();
+
+      const el=
+        document.createElement("div");
+
+      el.className="reel";
+
+      el.innerHTML=`
+
+        ${
+          reel.videoUrl
+          ?
+          `<video
+             controls
+             playsinline
+             src="${esc(reel.videoUrl)}">
+           </video>`
+          :
+          ""
+        }
+
+        <h3>
+          ${esc(reel.title || "Reel")}
+        </h3>
+
+        <div>
+          ${esc(reel.description || "")}
+        </div>
+
+      `;
+
+      list.appendChild(el);
+
+    });
+
+  }catch(error){
+
+    list.innerHTML=
+      `<div class="error">
+        Reels could not load.
+        <br><br>
+        ${esc(error.message)}
       </div>`;
 
   }
@@ -1968,119 +1864,129 @@ async function loadReels(){
 
 /* CHAT */
 
-async function loadChat(){
+function startChat(){
 
-  if(!profile?.chatEnabled) return;
+  if(stopChatListener){
+    stopChatListener();
+    stopChatListener=null;
+  }
 
-  const box = $("chatMessages");
+  const box=
+    $("chatMessages");
 
-  box.innerHTML =
-    `<div class="loading">Loading chat...</div>`;
+  box.innerHTML=
+    `<div class="empty">Loading chat...</div>`;
 
-  try{
-
-    const q = query(
+  const q=
+    query(
       collection(db,"kidsChat"),
       orderBy("createdAt","asc"),
       limit(100)
     );
 
-    const snap = await getDocs(q);
+  stopChatListener=
+    onSnapshot(
+      q,
+      snap=>{
 
-    box.innerHTML = "";
+        box.innerHTML="";
 
-    if(snap.empty){
+        if(snap.empty){
 
-      box.innerHTML =
-        `<div class="empty">
-          No messages yet.
-        </div>`;
+          box.innerHTML=
+            `<div class="empty">
+              No messages yet.
+            </div>`;
 
-      return;
+          return;
 
-    }
+        }
 
-    snap.forEach(docSnap=>{
+        snap.forEach(docSnap=>{
 
-      const msg = docSnap.data();
+          const msg=
+            docSnap.data();
 
-      const el =
-        document.createElement("div");
+          const el=
+            document.createElement("div");
 
-      const mine =
-        msg.uid === currentUser.uid;
+          const mine=
+            msg.uid===childUser.uid;
 
-      el.className =
-        "message" +
-        (mine ? " mine" : "");
+          el.className=
+            "msg" +
+            (mine ? " mine" : "");
 
-      el.innerHTML = `
+          el.innerHTML=`
 
-        <div class="messageName">
-          ${escapeHTML(msg.displayName || "Player")}
-        </div>
+            <div class="msgName">
+              ${esc(msg.displayName || "Player")}
+            </div>
 
-        <div>
-          ${escapeHTML(msg.text || "")}
-        </div>
+            <div>
+              ${esc(msg.text || "")}
+            </div>
 
-      `;
+          `;
 
-      box.appendChild(el);
+          box.appendChild(el);
 
-    });
+        });
 
-    box.scrollTop = box.scrollHeight;
+        box.scrollTop=
+          box.scrollHeight;
 
-  }catch(error){
+      },
+      error=>{
 
-    box.innerHTML =
-      `<div class="error">
-        Unable to load chat.
-        <br><br>
-        ${escapeHTML(error.message)}
-      </div>`;
+        box.innerHTML=
+          `<div class="error">
+            Chat could not load.
+            <br><br>
+            ${esc(error.message)}
+          </div>`;
 
-  }
+      }
+    );
 
 }
 
 
-window.sendMessage = async function(){
+window.sendChat=async function(){
 
-  if(!currentUser || !profile) return;
-
-  if(!profile.chatEnabled){
-
-    alert("Chat is locked by Parent Controls.");
+  if(!childProfile?.chatEnabled){
 
     return;
 
   }
 
-  const input = $("chatInput");
+  const input=
+    $("chatInput");
 
-  const text =
+  const text=
     input.value.trim();
 
-  if(!text) return;
+  if(!text)return;
 
   try{
 
     await addDoc(
       collection(db,"kidsChat"),
       {
-        uid:currentUser.uid,
+        uid:childUser.uid,
+
         displayName:
-          profile.displayName || "Player",
+          childProfile.displayName ||
+          "Player",
+
         text:text,
-        createdAt:serverTimestamp()
+
+        createdAt:
+          serverTimestamp()
       }
     );
 
-    input.value = "";
-
-    await loadChat();
+    input.value="";
 
   }catch(error){
 
@@ -2091,176 +1997,63 @@ window.sendMessage = async function(){
 };
 
 
-/* PARENT AUTH */
+/* PARENT GOOGLE LOGIN */
 
-window.parentCreateAccount = async function(){
+window.parentGoogleLogin=async function(){
 
-  const email =
-    $("parentEmail").value.trim();
-
-  const password =
-    $("parentPassword").value;
-
-  if(!email || !password){
-
-    $("parentAuthMessage").innerHTML =
-      `<div class="error">
-        Enter the parent email and password.
-      </div>`;
-
-    return;
-
-  }
-
-  if(password.length < 6){
-
-    $("parentAuthMessage").innerHTML =
-      `<div class="error">
-        Firebase requires a password of at least 6 characters.
-      </div>`;
-
-    return;
-
-  }
+  $("parentLoginStatus").innerHTML="";
 
   try{
 
-    const result =
-      await createUserWithEmailAndPassword(
-        parentAuth,
-        email,
-        password
-      );
+    const provider=
+      new GoogleAuthProvider();
 
-    parentUser = result.user;
-
-    await setDoc(
-      doc(db,"parentAccounts",parentUser.uid),
-      {
-        uid:parentUser.uid,
-        email:parentUser.email,
-        adultVerified:false,
-        childUid:null,
-        createdAt:serverTimestamp()
-      },
-      {merge:true}
+    await signInWithPopup(
+      parentAuth,
+      provider
     );
 
-    $("parentAuthMessage").innerHTML =
-      `<div class="successBox">
-        ✓ Parent account created. Now link it to this child account.
-      </div>`;
-
   }catch(error){
 
-    $("parentAuthMessage").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
+    $("parentLoginStatus").innerHTML=
+      `<div class="error">
+        ${esc(error.message)}
+      </div>`;
 
   }
 
 };
 
 
-window.parentSignIn = async function(){
+/* PARENT AUTH STATE */
 
-  const email =
-    $("parentEmail").value.trim();
+onAuthStateChanged(
+  parentAuth,
+  async user=>{
 
-  const password =
-    $("parentPassword").value;
+    parentUser=user;
 
-  if(!email || !password){
-
-    $("parentAuthMessage").innerHTML =
-      `<div class="error">
-        Enter the parent email and password.
-      </div>`;
-
-    return;
+    updateParentUI();
 
   }
-
-  try{
-
-    const result =
-      await signInWithEmailAndPassword(
-        parentAuth,
-        email,
-        password
-      );
-
-    parentUser = result.user;
-
-    $("parentAuthMessage").innerHTML =
-      `<div class="successBox">
-        ✓ Parent account signed in.
-      </div>`;
-
-    updateParentPage();
-
-  }catch(error){
-
-    $("parentAuthMessage").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
-
-  }
-
-};
+);
 
 
-onAuthStateChanged(parentAuth,user=>{
+/* CHILD REQUESTS PARENT */
 
-  parentUser = user;
+window.requestParent=async function(){
 
-  updateParentPage();
-
-});
-
-
-/* LINK PARENT */
-
-window.linkParent = async function(){
-
-  if(!currentUser){
-
-    $("linkMessage").innerHTML =
-      `<div class="error">Child account is not signed in.</div>`;
-
-    return;
-
-  }
-
-  if(!parentUser){
-
-    $("linkMessage").innerHTML =
-      `<div class="error">
-        The parent must sign in first.
-      </div>`;
-
-    return;
-
-  }
-
-  const code =
-    $("parentLinkCodeInput")
+  const email=
+    $("parentEmail")
       .value
       .trim()
-      .toUpperCase();
+      .toLowerCase();
 
-  if(!code){
+  if(!email){
 
-    $("linkMessage").innerHTML =
-      `<div class="error">Enter the child link code.</div>`;
-
-    return;
-
-  }
-
-  if(code !== profile.parentLinkCode){
-
-    $("linkMessage").innerHTML =
+    $("parentRequestStatus").innerHTML=
       `<div class="error">
-        That link code is incorrect.
+        Enter the parent's Google email.
       </div>`;
 
     return;
@@ -2270,243 +2063,199 @@ window.linkParent = async function(){
   try{
 
     await updateDoc(
-      doc(db,"kidsUsers",currentUser.uid),
+      doc(db,"kidsUsers",childUser.uid),
       {
-        parentUid:parentUser.uid
+        parentEmail:email,
+        parentNotifications:true
       }
     );
 
-    await setDoc(
-      doc(db,"parentAccounts",parentUser.uid),
-      {
-        uid:parentUser.uid,
-        email:parentUser.email,
-        childUid:currentUser.uid,
-        adultVerified:true
-      },
-      {merge:true}
-    );
+    childProfile.parentEmail=
+      email;
 
-    profile.parentUid =
-      parentUser.uid;
-
-    $("linkMessage").innerHTML =
-      `<div class="successBox">
-        ✓ Parent account linked.
+    $("parentRequestStatus").innerHTML=
+      `<div class="success">
+        ✓ Parent connection request saved.
+        <br><br>
+        The parent can now sign in with Google to approve it.
       </div>`;
-
-    updateParentPage();
 
   }catch(error){
 
-    $("linkMessage").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
+    $("parentRequestStatus").innerHTML=
+      `<div class="error">
+        ${esc(error.message)}
+      </div>`;
 
   }
 
 };
 
 
-/* PARENT PAGE */
+/* PARENT UI */
 
-async function updateParentPage(){
+async function updateParentUI(){
 
-  if(!profile) return;
+  if(!childProfile)return;
 
-  const linked =
-    !!profile.parentUid;
+  const connected=
+    !!childProfile.parentUid;
 
-  $("parentNotLinked")
-    .classList.toggle("hidden",linked);
+  $("parentStart")
+    .classList.toggle(
+      "hidden",
+      connected && !!parentUser
+    );
 
-  $("parentLinked")
-    .classList.toggle("hidden",!linked);
+  $("parentDashboard")
+    .classList.toggle(
+      "hidden",
+      connected &&
+      !!parentUser &&
+      parentUser.uid===childProfile.parentUid
+    );
 
-  if(linked){
+  if(
+    parentUser &&
+    childProfile.parentUid &&
+    parentUser.uid===childProfile.parentUid
+  ){
 
-    const isCorrectParent =
-      parentUser &&
-      parentUser.uid === profile.parentUid;
+    $("parentNotificationEmail").textContent=
+      parentUser.email || "";
 
-    if(!isCorrectParent){
+    $("reelsStatus").textContent=
+      childProfile.reelsEnabled
+      ? "Reels are enabled."
+      : "Reels are disabled.";
 
-      $("parentLinked").innerHTML = `
+    $("chatStatus").textContent=
+      childProfile.chatEnabled
+      ? "Chat is enabled."
+      : "Chat is disabled.";
 
-        <div class="notice warning">
-          This child account is linked to a parent account.
-          <br><br>
-          Sign into the linked parent account to manage settings.
-        </div>
+    return;
 
-        <button class="secondary"
-          onclick="showPage('home')">
-          Back
-        </button>
+  }
 
-      `;
 
-      return;
+  /*
+    If the parent is signed in but this child is not
+    connected yet, check whether this child's email
+    request matches the parent.
+  */
+
+  if(parentUser){
+
+    if(
+      childProfile.parentEmail &&
+      childProfile.parentEmail.toLowerCase()
+      ===
+      (parentUser.email || "").toLowerCase()
+    ){
+
+      await connectParent();
+
+    }else{
+
+      $("parentLoginStatus").innerHTML=
+        `<div class="notice warning">
+          This Google account does not match the
+          parent email requested by this child account.
+        </div>`;
 
     }
-
-    $("reelsSettingText").textContent =
-      profile.reelsEnabled
-        ? "Reels are enabled."
-        : "Reels are locked.";
-
-    $("chatSettingText").textContent =
-      profile.chatEnabled
-        ? "Chat is enabled."
-        : "Chat is locked.";
 
   }
 
 }
 
 
-/* PARENT PASSCODE */
+/* CONNECT PARENT */
 
-window.setParentPasscode = async function(){
+async function connectParent(){
 
-  if(!parentUser ||
-     !profile ||
-     parentUser.uid !== profile.parentUid){
-
-    $("passcodeMessage").innerHTML =
-      `<div class="error">
-        Only the linked parent account can do this.
-      </div>`;
-
-    return;
-
-  }
-
-  const pass =
-    $("parentPasscode")
-      .value
-      .trim();
-
-  if(!/^\d{4,8}$/.test(pass)){
-
-    $("passcodeMessage").innerHTML =
-      `<div class="error">
-        Use a 4-8 digit passcode.
-      </div>`;
-
-    return;
-
-  }
+  if(!parentUser)return;
 
   try{
 
-    const hash =
-      await sha256(pass);
+    await updateDoc(
+      doc(db,"kidsUsers",childUser.uid),
+      {
+        parentUid:parentUser.uid,
+        parentEmail:
+          parentUser.email || ""
+      }
+    );
 
     await setDoc(
       doc(db,"parentAccounts",parentUser.uid),
       {
-        parentPasscodeHash:hash,
-        parentControlsSet:true
+        uid:parentUser.uid,
+        email:parentUser.email || "",
+        childUid:childUser.uid,
+        childDisplayName:
+          childProfile.displayName || "Player",
+        createdAt:serverTimestamp()
       },
       {merge:true}
     );
 
-    $("parentPasscode").value = "";
+    childProfile.parentUid=
+      parentUser.uid;
 
-    $("passcodeMessage").innerHTML =
-      `<div class="successBox">
-        ✓ Parent passcode saved.
+    childProfile.parentEmail=
+      parentUser.email || "";
+
+    updateEverything();
+
+  }catch(error){
+
+    $("parentLoginStatus").innerHTML=
+      `<div class="error">
+        ${esc(error.message)}
       </div>`;
 
-  }catch(error){
-
-    $("passcodeMessage").innerHTML =
-      `<div class="error">${escapeHTML(error.message)}</div>`;
-
   }
 
-};
+}
 
 
-/* TOGGLE REELS */
+/* PARENT SETTINGS */
 
-window.toggleReels = async function(){
+window.toggleParentSetting=
+  async function(setting){
 
-  if(!parentUser ||
-     !profile ||
-     parentUser.uid !== profile.parentUid){
+  if(
+    !parentUser ||
+    !childProfile ||
+    parentUser.uid!==childProfile.parentUid
+  ){
 
-    alert("Only the linked parent account can change this.");
+    alert(
+      "Only the connected parent can change this setting."
+    );
 
     return;
 
   }
 
-  const newValue =
-    !profile.reelsEnabled;
+  const newValue=
+    !Boolean(childProfile[setting]);
 
   try{
 
     await updateDoc(
-      doc(db,"kidsUsers",currentUser.uid),
+      doc(db,"kidsUsers",childUser.uid),
       {
-        reelsEnabled:newValue
+        [setting]:newValue
       }
     );
 
-    profile.reelsEnabled =
+    childProfile[setting]=
       newValue;
 
-    updateFeatureLocks();
-    updateParentPage();
-
-    if(newValue){
-      await loadReels();
-    }
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-/* TOGGLE CHAT */
-
-window.toggleChat = async function(){
-
-  if(!parentUser ||
-     !profile ||
-     parentUser.uid !== profile.parentUid){
-
-    alert("Only the linked parent account can change this.");
-
-    return;
-
-  }
-
-  const newValue =
-    !profile.chatEnabled;
-
-  try{
-
-    await updateDoc(
-      doc(db,"kidsUsers",currentUser.uid),
-      {
-        chatEnabled:newValue
-      }
-    );
-
-    profile.chatEnabled =
-      newValue;
-
-    updateFeatureLocks();
-
-    if(newValue){
-      await loadChat();
-    }
+    updateEverything();
 
   }catch(error){
 
@@ -2519,15 +2268,15 @@ window.toggleChat = async function(){
 
 /* PARENT SIGN OUT */
 
-window.parentSignOut = async function(){
+window.parentSignOut=async function(){
 
   try{
 
     await signOut(parentAuth);
 
-    parentUser = null;
+    parentUser=null;
 
-    updateParentPage();
+    updateParentUI();
 
   }catch(error){
 
@@ -2538,35 +2287,37 @@ window.parentSignOut = async function(){
 };
 
 
-/* LOAD REELS WHEN NEEDED */
+/* CHILD SIGN OUT */
 
-document
-  .querySelector('[data-page="reels"]')
-  ?.addEventListener("click",()=>{
+window.childSignOut=async function(){
 
-    if(profile?.reelsEnabled){
-      loadReels();
-    }
+  if(stopChatListener){
+    stopChatListener();
+    stopChatListener=null;
+  }
 
-  });
+  await signOut(auth);
+
+};
 
 
 /* SERVICE WORKER */
 
 if("serviceWorker" in navigator){
 
-  window.addEventListener("load",()=>{
-
-    navigator.serviceWorker
-      .register("./sw.js")
-      .catch(error=>{
-        console.log(
-          "Service worker registration failed:",
-          error
-        );
-      });
-
-  });
+  window.addEventListener(
+    "load",
+    ()=>{
+      navigator.serviceWorker
+        .register("./sw.js")
+        .catch(error=>{
+          console.log(
+            "Service worker:",
+            error
+          );
+        });
+    }
+  );
 
 }
 
