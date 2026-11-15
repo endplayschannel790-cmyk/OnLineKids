@@ -22,8 +22,6 @@
   --blue:#3985ff;
   --purple:#984dff;
   --line:#282d4a;
-  --danger:#ff4d6d;
-  --success:#36d399;
 }
 
 body{
@@ -55,7 +53,7 @@ button{
 
 .loginBox{
   width:min(430px,100%);
-  background:rgba(17,20,38,.95);
+  background:rgba(17,20,38,.96);
   border:1px solid #303653;
   border-radius:25px;
   padding:30px;
@@ -68,13 +66,12 @@ button{
   height:80px;
   margin:auto;
   border-radius:22px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
+  background:linear-gradient(135deg,#3985ff,#984dff);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:38px;
   font-weight:900;
-  box-shadow:0 0 35px rgba(57,133,255,.35);
 }
 
 .loginBox h1{
@@ -97,10 +94,6 @@ button{
   color:#111;
   font-weight:bold;
   font-size:16px;
-}
-
-.googleBtn:hover{
-  transform:translateY(-1px);
 }
 
 #app{
@@ -133,7 +126,7 @@ header{
   width:38px;
   height:38px;
   border-radius:12px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
+  background:linear-gradient(135deg,#3985ff,#984dff);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -144,7 +137,7 @@ header{
   height:38px;
   border-radius:50%;
   object-fit:cover;
-  border:2px solid var(--blue);
+  border:2px solid #3985ff;
 }
 
 main{
@@ -183,7 +176,7 @@ main{
   right:0;
   bottom:0;
   z-index:20;
-  background:rgba(10,11,23,.96);
+  background:rgba(10,11,23,.97);
   backdrop-filter:blur(15px);
   border-top:1px solid var(--line);
   display:flex;
@@ -203,7 +196,11 @@ main{
 
 .nav button.active{
   color:#fff;
-  background:linear-gradient(135deg,rgba(57,133,255,.25),rgba(152,77,255,.25));
+  background:linear-gradient(
+    135deg,
+    rgba(57,133,255,.25),
+    rgba(152,77,255,.25)
+  );
 }
 
 .navIcon{
@@ -218,7 +215,7 @@ main{
 }
 
 .primary{
-  background:linear-gradient(135deg,var(--blue),var(--purple));
+  background:linear-gradient(135deg,#3985ff,#984dff);
   color:white;
   border:0;
   border-radius:12px;
@@ -258,12 +255,9 @@ textarea{
   resize:vertical;
 }
 
-input:focus,textarea:focus{
-  border-color:var(--blue);
-}
-
-.profileTop{
-  text-align:center;
+input:focus,
+textarea:focus{
+  border-color:#3985ff;
 }
 
 .profilePic{
@@ -271,7 +265,7 @@ input:focus,textarea:focus{
   height:105px;
   border-radius:50%;
   object-fit:cover;
-  border:4px solid var(--blue);
+  border:4px solid #3985ff;
   margin:auto;
   display:block;
 }
@@ -292,13 +286,21 @@ input:focus,textarea:focus{
   border:4px solid transparent;
   background:
     linear-gradient(#111426,#111426) padding-box,
-    linear-gradient(135deg,#3985ff,#984dff,#ff4d8d,#ffd43b) border-box;
+    linear-gradient(
+      135deg,
+      #3985ff,
+      #984dff,
+      #ff4d8d,
+      #ffd43b
+    ) border-box;
 }
 
 .banner{
   height:180px;
   border-radius:18px;
-  background:#171b31 center/cover no-repeat;
+  background:
+    linear-gradient(135deg,#3985ff,#984dff)
+    center/cover no-repeat;
   margin-bottom:-45px;
 }
 
@@ -337,10 +339,6 @@ input:focus,textarea:focus{
 .stat span{
   color:var(--muted);
   font-size:12px;
-}
-
-.postBox textarea{
-  margin-bottom:8px;
 }
 
 .post{
@@ -452,7 +450,11 @@ input:focus,textarea:focus{
 
 .message.mine{
   margin-left:auto;
-  background:linear-gradient(135deg,#2468d7,#7235b8);
+  background:linear-gradient(
+    135deg,
+    #2468d7,
+    #7235b8
+  );
 }
 
 .messageName{
@@ -504,7 +506,7 @@ input:focus,textarea:focus{
 }
 
 .switch.on{
-  background:linear-gradient(135deg,var(--blue),var(--purple));
+  background:linear-gradient(135deg,#3985ff,#984dff);
 }
 
 .switch.on span{
@@ -586,42 +588,87 @@ input:focus,textarea:focus{
 <body>
 
 <div id="loginScreen">
+
   <div class="loginBox">
+
     <div class="logo">O</div>
+
     <h1>OnLine Kids</h1>
-    <p>Connect, create and share in a kid-friendly community.</p>
+
+    <p>
+      Connect, create and share in a kid-friendly community.
+    </p>
 
     <div id="loginError" class="error hidden"></div>
 
-    <button class="googleBtn" id="googleLogin">
+    <button
+      class="googleBtn"
+      id="googleLogin"
+    >
       🔵 Continue with Google
     </button>
+
   </div>
+
 </div>
+
 
 <div id="app" class="hidden">
 
 <header>
+
   <div class="brand">
-    <div class="brandIcon">O</div>
-    <span>OnLine Kids</span>
+
+    <div class="brandIcon">
+      O
+    </div>
+
+    <span>
+      OnLine Kids
+    </span>
+
   </div>
 
-  <img id="headerAvatar" class="headerAvatar" src="" alt="Profile">
+  <img
+    id="headerAvatar"
+    class="headerAvatar"
+    src=""
+    alt="Profile"
+  >
+
 </header>
+
 
 <main>
 
 <!-- HOME -->
-<section id="homePage" class="page active">
+
+<section
+  id="homePage"
+  class="page active"
+>
 
   <div class="card">
-    <h2>Welcome 👋</h2>
-    <p class="muted" id="welcomeText">Welcome to OnLine Kids!</p>
+
+    <h2>
+      Welcome 👋
+    </h2>
+
+    <p
+      class="muted"
+      id="welcomeText"
+    >
+      Welcome to OnLine Kids!
+    </p>
+
   </div>
 
-  <div class="card postBox">
-    <h2>Create a post</h2>
+
+  <div class="card">
+
+    <h2>
+      Create a post
+    </h2>
 
     <textarea
       id="postText"
@@ -629,36 +676,59 @@ input:focus,textarea:focus{
       placeholder="What's happening?"
     ></textarea>
 
-    <button class="primary" id="createPost">
+    <button
+      class="primary"
+      id="createPost"
+    >
       Post
     </button>
+
   </div>
+
 
   <div id="postsList"></div>
 
 </section>
 
+
 <!-- REELS -->
-<section id="reelsPage" class="page">
+
+<section
+  id="reelsPage"
+  class="page"
+>
 
   <div class="card">
-    <h2>Reels 🎬</h2>
+
+    <h2>
+      Reels 🎬
+    </h2>
+
     <p class="muted">
       Watch short videos shared by the community.
     </p>
+
   </div>
 
   <div id="reelsList"></div>
 
 </section>
 
+
 <!-- CHAT -->
-<section id="chatPage" class="page">
+
+<section
+  id="chatPage"
+  class="page"
+>
 
   <div class="card">
-    <h2>Chat 💬</h2>
 
-    <div id="chatNotice" class="notice">
+    <h2>
+      Chat 💬
+    </h2>
+
+    <div class="notice">
       Chat uses private conversations between members.
     </div>
 
@@ -667,38 +737,64 @@ input:focus,textarea:focus{
       placeholder="Enter another user's username"
     >
 
-    <button class="primary" id="findChatUser">
+    <button
+      class="primary"
+      id="findChatUser"
+    >
       Find user
     </button>
 
-    <div id="chatUsers" class="chatUsers"></div>
+    <div
+      id="chatUsers"
+      class="chatUsers"
+    ></div>
+
   </div>
 
-  <div class="card">
-    <h2 id="chatTitle">Select someone to chat with</h2>
 
-    <div id="chatWindow" class="chatWindow">
+  <div class="card">
+
+    <h2 id="chatTitle">
+      Select someone to chat with
+    </h2>
+
+    <div
+      id="chatWindow"
+      class="chatWindow"
+    >
       <div class="empty">
         Select a user to start chatting.
       </div>
     </div>
 
     <div class="chatInput">
+
       <input
         id="chatMessage"
         maxlength="2000"
         placeholder="Write a message..."
       >
-      <button class="primary" id="sendMessage">
+
+      <button
+        class="primary"
+        id="sendMessage"
+      >
         Send
       </button>
+
     </div>
+
   </div>
 
 </section>
 
+
 <!-- PROFILE -->
-<section id="profilePage" class="page">
+
+<section
+  id="profilePage"
+  class="page"
+>
 
   <div class="card">
 
@@ -716,36 +812,62 @@ input:focus,textarea:focus{
         alt="Profile"
       >
 
-      <h2 id="profileName">Player</h2>
+      <h2 id="profileName">
+        Player
+      </h2>
 
       <div
         id="profileUsername"
         class="username"
-      >@player</div>
+      >
+        @player
+      </div>
 
       <div
         id="profileBio"
         class="bio"
-      >Welcome to my OnLine Kids profile!</div>
+      >
+        Welcome to my OnLine Kids profile!
+      </div>
 
       <div class="stats">
+
         <div class="stat">
-          <strong id="postCount">0</strong>
-          <span>Posts</span>
+
+          <strong id="postCount">
+            0
+          </strong>
+
+          <span>
+            Posts
+          </span>
+
         </div>
 
         <div class="stat">
-          <strong id="crystalCount">0</strong>
-          <span>Crystals</span>
+
+          <strong id="crystalCount">
+            0
+          </strong>
+
+          <span>
+            Crystals
+          </span>
+
         </div>
+
       </div>
 
     </div>
+
   </div>
+
 
   <div class="card">
 
-    <h2>Customize profile</h2>
+    <h2>
+      Customize profile
+    </h2>
 
     <input
       id="displayNameInput"
@@ -770,7 +892,10 @@ input:focus,textarea:focus{
       placeholder="Banner image URL"
     >
 
-    <p class="muted" style="margin-bottom:10px;">
+    <p
+      class="muted"
+      style="margin-bottom:10px;"
+    >
       Profile frame
     </p>
 
@@ -804,7 +929,10 @@ input:focus,textarea:focus{
 
     <br>
 
-    <button class="primary" id="saveProfile">
+    <button
+      class="primary"
+      id="saveProfile"
+    >
       Save profile
     </button>
 
@@ -812,15 +940,22 @@ input:focus,textarea:focus{
 
 </section>
 
-<!-- PARENT CONTROLS -->
-<section id="parentPage" class="page">
+
+<!-- PARENT -->
+
+<section
+  id="parentPage"
+  class="page"
+>
 
   <div class="card">
 
-    <h2>Parent Controls 👨‍👩‍👧</h2>
+    <h2>
+      Parent Controls 👨‍👩‍👧
+    </h2>
 
     <div class="notice">
-      Parent controls require a parent Google account. No child link code is used.
+      Parent controls use a parent Google account. No child link code is used.
     </div>
 
     <input
@@ -829,22 +964,39 @@ input:focus,textarea:focus{
       placeholder="Parent's Google email"
     >
 
-    <button class="primary" id="requestParent">
+    <button
+      class="primary"
+      id="requestParent"
+    >
       Connect parent
     </button>
 
-    <div id="parentStatus" style="margin-top:12px;"></div>
+    <div
+      id="parentStatus"
+      style="margin-top:12px;"
+    ></div>
 
   </div>
 
+
   <div class="card">
 
-    <h2>Current controls</h2>
+    <h2>
+      Current controls
+    </h2>
 
     <div class="setting">
+
       <div>
-        <strong>Reels</strong>
-        <p class="muted">Allow access to Reels.</p>
+
+        <strong>
+          Reels
+        </strong>
+
+        <p class="muted">
+          Allow access to Reels.
+        </p>
+
       </div>
 
       <button
@@ -854,12 +1006,22 @@ input:focus,textarea:focus{
       >
         <span></span>
       </button>
+
     </div>
 
+
     <div class="setting">
+
       <div>
-        <strong>Chat</strong>
-        <p class="muted">Allow private chat.</p>
+
+        <strong>
+          Chat
+        </strong>
+
+        <p class="muted">
+          Allow private chat.
+        </p>
+
       </div>
 
       <button
@@ -869,20 +1031,31 @@ input:focus,textarea:focus{
       >
         <span></span>
       </button>
+
     </div>
 
   </div>
 
 </section>
 
+
 <!-- ACCOUNT -->
-<section id="accountPage" class="page">
+
+<section
+  id="accountPage"
+  class="page"
+>
 
   <div class="card">
 
-    <h2>Account</h2>
+    <h2>
+      Account
+    </h2>
 
-    <p class="muted" id="accountEmail"></p>
+    <p
+      class="muted"
+      id="accountEmail"
+    ></p>
 
     <br>
 
@@ -899,34 +1072,48 @@ input:focus,textarea:focus{
 
 </main>
 
+
 <nav class="nav">
 
-  <button data-page="homePage" class="active">
+  <button
+    data-page="homePage"
+    class="active"
+  >
     <span class="navIcon">🏠</span>
     <span class="navText">Home</span>
   </button>
 
-  <button data-page="reelsPage">
+  <button
+    data-page="reelsPage"
+  >
     <span class="navIcon">🎬</span>
     <span class="navText">Reels</span>
   </button>
 
-  <button data-page="chatPage">
+  <button
+    data-page="chatPage"
+  >
     <span class="navIcon">💬</span>
     <span class="navText">Chat</span>
   </button>
 
-  <button data-page="profilePage">
+  <button
+    data-page="profilePage"
+  >
     <span class="navIcon">👤</span>
     <span class="navText">Profile</span>
   </button>
 
-  <button data-page="parentPage">
+  <button
+    data-page="parentPage"
+  >
     <span class="navIcon">👨‍👩‍👧</span>
     <span class="navText">Parent</span>
   </button>
 
-  <button data-page="accountPage">
+  <button
+    data-page="accountPage"
+  >
     <span class="navIcon">⚙️</span>
     <span class="navText">Account</span>
   </button>
@@ -934,6 +1121,7 @@ input:focus,textarea:focus{
 </nav>
 
 </div>
+
 
 <script type="module">
 
@@ -944,7 +1132,6 @@ import {
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
   onAuthStateChanged,
@@ -969,34 +1156,42 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE
-========================= */
+/* FIREBASE CONFIG */
 
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
+  apiKey: "AIzaSyCghg83g-uOUOT6PMSrS88sDeO55_HAfnI",
   authDomain: "online-36946.firebaseapp.com",
   projectId: "online-36946",
   storageBucket: "online-36946.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_FIREBASE_APP_ID"
+  messagingSenderId: "862122300869",
+  appId: "1:862122300869:web:38f55cf996e0feb0b5e7ac",
+  measurementId: "G-6SRQR8M84V"
 };
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app =
+  initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const auth =
+  getAuth(app);
+
+const db =
+  getFirestore(app);
+
+const provider =
+  new GoogleAuthProvider();
+
 
 provider.setCustomParameters({
   prompt:"select_account"
 });
 
 
-/* =========================
-   ELEMENTS
-========================= */
+let currentUser = null;
+let currentProfile = null;
+let currentChatUser = null;
+let currentChatUnsubscribe = null;
+
 
 const loginScreen =
   document.getElementById("loginScreen");
@@ -1008,107 +1203,75 @@ const loginError =
   document.getElementById("loginError");
 
 
-/* =========================
-   STATE
-========================= */
-
-let currentUser = null;
-let currentProfile = null;
-
-let currentChatUser = null;
-let currentChatUnsubscribe = null;
-
-
-/* =========================
-   HELPERS
-========================= */
-
 function showError(message){
-  loginError.textContent = message;
-  loginError.classList.remove("hidden");
-}
 
-function escapeHTML(value){
-  return String(value || "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
+  loginError.textContent =
+    message;
 
-function defaultAvatar(){
-  return "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg";
+  loginError.classList.remove(
+    "hidden"
+  );
+
 }
 
 
-/* =========================
-   GOOGLE SIGN IN
-========================= */
+/* GOOGLE LOGIN */
 
 document
   .getElementById("googleLogin")
-  .addEventListener("click", async () => {
+  .addEventListener(
+    "click",
+    async () => {
 
-    loginError.classList.add("hidden");
-
-    try{
-
-      await signInWithPopup(
-        auth,
-        provider
+      loginError.classList.add(
+        "hidden"
       );
 
-    }catch(error){
+      try{
 
-      console.error(error);
+        await signInWithRedirect(
+          auth,
+          provider
+        );
 
-      if(
-        error.code === "auth/popup-blocked" ||
-        error.code === "auth/popup-closed-by-user"
-      ){
+      }catch(error){
 
-        try{
-
-          await signInWithRedirect(
-            auth,
-            provider
-          );
-
-        }catch(redirectError){
-
-          showError(
-            redirectError.message
-          );
-
-        }
-
-      }else{
+        console.error(error);
 
         showError(
+          "Google sign-in failed: " +
           error.message
         );
 
       }
 
     }
+  );
 
-  });
 
+/* FINISH REDIRECT LOGIN */
 
 getRedirectResult(auth)
 .catch(error => {
 
-  if(error && error.code !== "auth/no-auth-event"){
-    console.error(error);
+  if(error){
+
+    console.error(
+      "Redirect sign-in error:",
+      error
+    );
+
+    showError(
+      "Google sign-in failed: " +
+      error.message
+    );
+
   }
 
 });
 
 
-/* =========================
-   AUTH
-========================= */
+/* AUTH STATE */
 
 onAuthStateChanged(
   auth,
@@ -1118,19 +1281,32 @@ onAuthStateChanged(
 
       currentUser = null;
 
-      loginScreen.classList.remove("hidden");
-      appScreen.classList.add("hidden");
+      loginScreen.classList.remove(
+        "hidden"
+      );
+
+      appScreen.classList.add(
+        "hidden"
+      );
 
       return;
+
     }
 
     currentUser = user;
 
-    loginScreen.classList.add("hidden");
-    appScreen.classList.remove("hidden");
+    loginScreen.classList.add(
+      "hidden"
+    );
 
-    document.getElementById("accountEmail")
-      .textContent = user.email || "";
+    appScreen.classList.remove(
+      "hidden"
+    );
+
+    document.getElementById(
+      "accountEmail"
+    ).textContent =
+      user.email || "";
 
     await loadProfile();
 
@@ -1142,38 +1318,43 @@ onAuthStateChanged(
 );
 
 
-/* =========================
-   PROFILE
-========================= */
+/* PROFILE */
 
 async function loadProfile(){
 
-  const ref = doc(
-    db,
-    "users",
-    currentUser.uid
-  );
+  const profileRef =
+    doc(
+      db,
+      "users",
+      currentUser.uid
+    );
 
-  const snap = await getDoc(ref);
+  const snapshot =
+    await getDoc(profileRef);
 
-  if(!snap.exists()){
+
+  if(!snapshot.exists()){
 
     currentProfile = {
 
       uid:currentUser.uid,
 
       displayName:
-        currentUser.displayName || "Player",
+        currentUser.displayName ||
+        "Player",
 
       username:
         "player" +
-        Math.floor(Math.random()*99999),
+        Math.floor(
+          Math.random()*99999
+        ),
 
       bio:
         "Welcome to my OnLine Kids profile!",
 
       googlePhotoURL:
-        currentUser.photoURL || defaultAvatar(),
+        currentUser.photoURL ||
+        "",
 
       bannerUrl:"",
 
@@ -1183,16 +1364,19 @@ async function loadProfile(){
 
     };
 
+
     await setDoc(
-      ref,
+      profileRef,
       currentProfile
     );
 
   }else{
 
-    currentProfile = snap.data();
+    currentProfile =
+      snapshot.data();
 
   }
+
 
   renderProfile();
 
@@ -1201,61 +1385,91 @@ async function loadProfile(){
 
 function renderProfile(){
 
-  const profile =
-    currentProfile || {};
-
   const photo =
-    profile.googlePhotoURL ||
+    currentProfile.googlePhotoURL ||
     currentUser.photoURL ||
-    defaultAvatar();
+    "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg";
 
-  document.getElementById("headerAvatar")
-    .src = photo;
 
-  document.getElementById("profileAvatar")
-    .src = photo;
+  document.getElementById(
+    "headerAvatar"
+  ).src = photo;
 
-  document.getElementById("profileName")
-    .textContent =
-      profile.displayName || "Player";
 
-  document.getElementById("profileUsername")
-    .textContent =
-      "@" +
-      (profile.username || "player");
+  document.getElementById(
+    "profileAvatar"
+  ).src = photo;
 
-  document.getElementById("profileBio")
-    .textContent =
-      profile.bio ||
-      "Welcome to my OnLine Kids profile!";
 
-  document.getElementById("displayNameInput")
-    .value =
-      profile.displayName || "";
+  document.getElementById(
+    "profileName"
+  ).textContent =
+    currentProfile.displayName ||
+    "Player";
 
-  document.getElementById("usernameInput")
-    .value =
-      profile.username || "";
 
-  document.getElementById("bioInput")
-    .value =
-      profile.bio || "";
+  document.getElementById(
+    "profileUsername"
+  ).textContent =
+    "@" +
+    (
+      currentProfile.username ||
+      "player"
+    );
 
-  document.getElementById("bannerInput")
-    .value =
-      profile.bannerUrl || "";
 
-  document.getElementById("crystalCount")
-    .textContent =
-      profile.crystals || 0;
+  document.getElementById(
+    "profileBio"
+  ).textContent =
+    currentProfile.bio ||
+    "Welcome to my OnLine Kids profile!";
+
+
+  document.getElementById(
+    "displayNameInput"
+  ).value =
+    currentProfile.displayName ||
+    "";
+
+
+  document.getElementById(
+    "usernameInput"
+  ).value =
+    currentProfile.username ||
+    "";
+
+
+  document.getElementById(
+    "bioInput"
+  ).value =
+    currentProfile.bio ||
+    "";
+
+
+  document.getElementById(
+    "bannerInput"
+  ).value =
+    currentProfile.bannerUrl ||
+    "";
+
+
+  document.getElementById(
+    "crystalCount"
+  ).textContent =
+    currentProfile.crystals ||
+    0;
+
 
   const banner =
-    document.getElementById("profileBanner");
+    document.getElementById(
+      "profileBanner"
+    );
 
-  if(profile.bannerUrl){
+
+  if(currentProfile.bannerUrl){
 
     banner.style.backgroundImage =
-      `url("${profile.bannerUrl}")`;
+      `url("${currentProfile.bannerUrl}")`;
 
   }else{
 
@@ -1264,19 +1478,25 @@ function renderProfile(){
 
   }
 
+
   const avatar =
-    document.getElementById("profileAvatar");
+    document.getElementById(
+      "profileAvatar"
+    );
+
 
   avatar.className =
     "profilePic";
 
-  if(profile.avatarFrame){
 
-    avatar.classList.add(
-      "frame-" + profile.avatarFrame
-    );
+  avatar.classList.add(
+    "frame-" +
+    (
+      currentProfile.avatarFrame ||
+      "blue"
+    )
+  );
 
-  }
 
   document
     .querySelectorAll(".frameChoice")
@@ -1285,7 +1505,7 @@ function renderProfile(){
       button.classList.toggle(
         "selected",
         button.dataset.frame ===
-        profile.avatarFrame
+        currentProfile.avatarFrame
       );
 
     });
@@ -1293,156 +1513,183 @@ function renderProfile(){
 }
 
 
-/* =========================
-   PROFILE FRAME
-========================= */
+/* FRAME SELECTOR */
 
 document
   .querySelectorAll(".frameChoice")
   .forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      if(!currentProfile){
-        return;
+        currentProfile.avatarFrame =
+          button.dataset.frame;
+
+        renderProfile();
+
       }
-
-      currentProfile.avatarFrame =
-        button.dataset.frame;
-
-      renderProfile();
-
-    });
+    );
 
   });
 
 
-/* =========================
-   SAVE PROFILE
-========================= */
+/* SAVE PROFILE */
 
 document
   .getElementById("saveProfile")
-  .addEventListener("click", async () => {
+  .addEventListener(
+    "click",
+    async () => {
 
-    if(!currentUser){
-      return;
-    }
+      const displayName =
+        document.getElementById(
+          "displayNameInput"
+        ).value.trim();
 
-    const displayName =
-      document.getElementById("displayNameInput")
-        .value.trim();
 
-    const username =
-      document.getElementById("usernameInput")
-        .value.trim()
+      const username =
+        document.getElementById(
+          "usernameInput"
+        ).value
+        .trim()
         .toLowerCase()
-        .replace(/[^a-z0-9_]/g,"");
+        .replace(
+          /[^a-z0-9_]/g,
+          ""
+        );
 
-    const bio =
-      document.getElementById("bioInput")
-        .value.trim();
 
-    const bannerUrl =
-      document.getElementById("bannerInput")
-        .value.trim();
+      const bio =
+        document.getElementById(
+          "bioInput"
+        ).value.trim();
 
-    if(!displayName){
 
-      alert("Please enter a display name.");
+      const bannerUrl =
+        document.getElementById(
+          "bannerInput"
+        ).value.trim();
 
-      return;
+
+      if(!displayName){
+
+        alert(
+          "Enter a display name."
+        );
+
+        return;
+
+      }
+
+
+      if(!username){
+
+        alert(
+          "Enter a username."
+        );
+
+        return;
+
+      }
+
+
+      try{
+
+        await updateDoc(
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          ),
+          {
+
+            displayName,
+
+            username,
+
+            bio,
+
+            bannerUrl,
+
+            avatarFrame:
+              currentProfile.avatarFrame ||
+              "blue",
+
+            googlePhotoURL:
+              currentUser.photoURL ||
+              currentProfile.googlePhotoURL ||
+              ""
+
+          }
+        );
+
+
+        currentProfile.displayName =
+          displayName;
+
+        currentProfile.username =
+          username;
+
+        currentProfile.bio =
+          bio;
+
+        currentProfile.bannerUrl =
+          bannerUrl;
+
+
+        alert(
+          "Profile saved!"
+        );
+
+
+        renderProfile();
+
+      }catch(error){
+
+        console.error(error);
+
+        alert(
+          "Could not save profile: " +
+          error.message
+        );
+
+      }
 
     }
-
-    if(!username){
-
-      alert("Please enter a username.");
-
-      return;
-
-    }
-
-    try{
-
-      await updateDoc(
-        doc(
-          db,
-          "users",
-          currentUser.uid
-        ),
-        {
-
-          displayName,
-
-          username,
-
-          bio,
-
-          bannerUrl,
-
-          avatarFrame:
-            currentProfile.avatarFrame ||
-            "blue",
-
-          googlePhotoURL:
-            currentUser.photoURL ||
-            currentProfile.googlePhotoURL ||
-            defaultAvatar()
-
-        }
-      );
-
-      currentProfile.displayName =
-        displayName;
-
-      currentProfile.username =
-        username;
-
-      currentProfile.bio =
-        bio;
-
-      currentProfile.bannerUrl =
-        bannerUrl;
-
-      alert("Profile saved!");
-
-      renderProfile();
-
-    }catch(error){
-
-      console.error(error);
-
-      alert(
-        "Could not save your profile: " +
-        error.message
-      );
-
-    }
-
-  });
+  );
 
 
-/* =========================
-   POSTS
-========================= */
+/* POSTS */
 
 function loadPosts(){
 
   const postsList =
-    document.getElementById("postsList");
+    document.getElementById(
+      "postsList"
+    );
 
-  const q = query(
-    collection(db,"posts"),
-    orderBy("createdAt","desc"),
-    limit(50)
-  );
+
+  const postsQuery =
+    query(
+      collection(
+        db,
+        "posts"
+      ),
+      orderBy(
+        "createdAt",
+        "desc"
+      ),
+      limit(50)
+    );
+
 
   onSnapshot(
-    q,
+    postsQuery,
     snapshot => {
 
       postsList.innerHTML = "";
+
 
       if(snapshot.empty){
 
@@ -1456,75 +1703,90 @@ function loadPosts(){
 
       }
 
-      snapshot.forEach(postSnap => {
 
-        const post =
-          postSnap.data();
+      snapshot.forEach(
+        postSnapshot => {
 
-        const id =
-          postSnap.id;
+          const post =
+            postSnapshot.data();
 
-        const photo =
-          post.authorPhoto ||
-          defaultAvatar();
 
-        const div =
-          document.createElement("div");
+          const div =
+            document.createElement(
+              "div"
+            );
 
-        div.className = "post";
+          div.className =
+            "post";
 
-        div.innerHTML = `
 
-          <div class="postHeader">
+          const photo =
+            post.authorPhoto ||
+            "https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg";
 
-            <img
-              class="smallAvatar"
-              src="${escapeHTML(photo)}"
-            >
 
-            <div class="postAuthor">
+          div.innerHTML = `
 
-              <strong>
-                ${escapeHTML(
-                  post.authorName ||
-                  "Player"
-                )}
-              </strong>
+            <div class="postHeader">
 
-              <span>
-                @${escapeHTML(
-                  post.authorUsername ||
-                  "player"
-                )}
-              </span>
+              <img
+                class="smallAvatar"
+                src="${escapeHTML(photo)}"
+              >
+
+              <div class="postAuthor">
+
+                <strong>
+                  ${escapeHTML(
+                    post.authorName ||
+                    "Player"
+                  )}
+                </strong>
+
+                <span>
+                  @${escapeHTML(
+                    post.authorUsername ||
+                    "player"
+                  )}
+                </span>
+
+              </div>
 
             </div>
 
-          </div>
+            <div class="postText">
+              ${escapeHTML(
+                post.text ||
+                ""
+              )}
+            </div>
 
-          <div class="postText">
-            ${escapeHTML(post.text)}
-          </div>
+            <div class="postActions">
 
-          <div class="postActions">
+              <button
+                class="likeButton"
+                data-id="${postSnapshot.id}"
+              >
+                ❤️ ${post.likes || 0}
+              </button>
 
-            <button
-              class="likeButton"
-              data-id="${id}"
-            >
-              ❤️ ${post.likes || 0}
-            </button>
+            </div>
 
-          </div>
+          `;
 
-        `;
 
-        postsList.appendChild(div);
+          postsList.appendChild(
+            div
+          );
 
-      });
+        }
+      );
+
 
       document
-        .querySelectorAll(".likeButton")
+        .querySelectorAll(
+          ".likeButton"
+        )
         .forEach(button => {
 
           button.addEventListener(
@@ -1538,15 +1800,21 @@ function loadPosts(){
                   button.dataset.id
                 );
 
-              const snap =
-                await getDoc(postRef);
 
-              if(!snap.exists()){
+              const snapshot =
+                await getDoc(
+                  postRef
+                );
+
+
+              if(!snapshot.exists()){
                 return;
               }
 
+
               const data =
-                snap.data();
+                snapshot.data();
+
 
               await updateDoc(
                 postRef,
@@ -1564,7 +1832,11 @@ function loadPosts(){
     },
     error => {
 
-      console.error(error);
+      console.error(
+        "Posts error:",
+        error
+      );
+
 
       postsList.innerHTML = `
         <div class="card error">
@@ -1578,103 +1850,133 @@ function loadPosts(){
 }
 
 
-/* =========================
-   CREATE POST
-========================= */
+/* CREATE POST */
 
 document
   .getElementById("createPost")
-  .addEventListener("click", async () => {
+  .addEventListener(
+    "click",
+    async () => {
 
-    if(!currentUser || !currentProfile){
-      return;
+      const text =
+        document.getElementById(
+          "postText"
+        ).value.trim();
+
+
+      if(!text){
+
+        alert(
+          "Write something first."
+        );
+
+        return;
+
+      }
+
+
+      if(text.length > 500){
+
+        alert(
+          "Posts can be up to 500 characters."
+        );
+
+        return;
+
+      }
+
+
+      try{
+
+        await addDoc(
+          collection(
+            db,
+            "posts"
+          ),
+          {
+
+            authorId:
+              currentUser.uid,
+
+            authorName:
+              currentProfile.displayName ||
+              "Player",
+
+            authorUsername:
+              currentProfile.username ||
+              "player",
+
+            authorPhoto:
+              currentUser.photoURL ||
+              currentProfile.googlePhotoURL ||
+              "",
+
+            text,
+
+            likes:0,
+
+            comments:0,
+
+            createdAt:
+              serverTimestamp()
+
+          }
+        );
+
+
+        document.getElementById(
+          "postText"
+        ).value = "";
+
+      }catch(error){
+
+        console.error(
+          "Post error:",
+          error
+        );
+
+
+        alert(
+          "Could not create post: " +
+          error.message
+        );
+
+      }
+
     }
-
-    const text =
-      document.getElementById("postText")
-        .value.trim();
-
-    if(!text){
-      alert("Write something first.");
-      return;
-    }
-
-    if(text.length > 500){
-      alert("Posts can be up to 500 characters.");
-      return;
-    }
-
-    try{
-
-      await addDoc(
-        collection(db,"posts"),
-        {
-
-          authorId:
-            currentUser.uid,
-
-          authorName:
-            currentProfile.displayName ||
-            "Player",
-
-          authorUsername:
-            currentProfile.username ||
-            "player",
-
-          authorPhoto:
-            currentUser.photoURL ||
-            currentProfile.googlePhotoURL ||
-            defaultAvatar(),
-
-          text,
-
-          likes:0,
-
-          comments:0,
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-      document.getElementById("postText")
-        .value = "";
-
-    }catch(error){
-
-      console.error(error);
-
-      alert(
-        "Could not create post: " +
-        error.message
-      );
-
-    }
-
-  });
+  );
 
 
-/* =========================
-   REELS / SHORTS
-========================= */
+/* REELS */
 
 function loadReels(){
 
   const reelsList =
-    document.getElementById("reelsList");
+    document.getElementById(
+      "reelsList"
+    );
 
-  const q = query(
-    collection(db,"shorts"),
-    orderBy("createdAt","desc"),
-    limit(50)
-  );
+
+  const reelsQuery =
+    query(
+      collection(
+        db,
+        "shorts"
+      ),
+      orderBy(
+        "createdAt",
+        "desc"
+      ),
+      limit(50)
+    );
+
 
   onSnapshot(
-    q,
+    reelsQuery,
     snapshot => {
 
       reelsList.innerHTML = "";
+
 
       if(snapshot.empty){
 
@@ -1688,55 +1990,71 @@ function loadReels(){
 
       }
 
-      snapshot.forEach(shortSnap => {
 
-        const reel =
-          shortSnap.data();
+      snapshot.forEach(
+        reelSnapshot => {
 
-        const div =
-          document.createElement("div");
+          const reel =
+            reelSnapshot.data();
 
-        div.className = "reel";
 
-        div.innerHTML = `
+          const div =
+            document.createElement(
+              "div"
+            );
 
-          <video
-            controls
-            playsinline
-            preload="metadata"
-            src="${escapeHTML(
-              reel.videoUrl || ""
-            )}"
-          ></video>
+          div.className =
+            "reel";
 
-          <div class="reelInfo">
 
-            <strong>
-              ${escapeHTML(
-                reel.title ||
-                "OnLine Kids Reel"
-              )}
-            </strong>
+          div.innerHTML = `
 
-            <p class="muted">
-              ${escapeHTML(
-                reel.description ||
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              src="${escapeHTML(
+                reel.videoUrl ||
                 ""
-              )}
-            </p>
+              )}"
+            ></video>
 
-          </div>
+            <div class="reelInfo">
 
-        `;
+              <strong>
+                ${escapeHTML(
+                  reel.title ||
+                  "OnLine Kids Reel"
+                )}
+              </strong>
 
-        reelsList.appendChild(div);
+              <p class="muted">
+                ${escapeHTML(
+                  reel.description ||
+                  ""
+                )}
+              </p>
 
-      });
+            </div>
+
+          `;
+
+
+          reelsList.appendChild(
+            div
+          );
+
+        }
+      );
 
     },
     error => {
 
-      console.error(error);
+      console.error(
+        "Reels error:",
+        error
+      );
+
 
       reelsList.innerHTML = `
         <div class="card error">
@@ -1750,121 +2068,177 @@ function loadReels(){
 }
 
 
-/* =========================
-   CHAT USER SEARCH
-========================= */
+/* CHAT SEARCH */
 
 document
   .getElementById("findChatUser")
-  .addEventListener("click", async () => {
+  .addEventListener(
+    "click",
+    async () => {
 
-    const username =
-      document.getElementById("chatUserSearch")
-        .value.trim()
+      const username =
+        document.getElementById(
+          "chatUserSearch"
+        ).value
+        .trim()
         .toLowerCase();
 
-    if(!username){
 
-      alert("Enter a username.");
+      if(!username){
 
-      return;
-
-    }
-
-    try{
-
-      const q = query(
-        collection(db,"users"),
-        where("username","==",username),
-        limit(5)
-      );
-
-      const results =
-        await getDocs(q);
-
-      const usersDiv =
-        document.getElementById("chatUsers");
-
-      usersDiv.innerHTML = "";
-
-      if(results.empty){
-
-        usersDiv.innerHTML = `
-          <div class="muted">
-            No user found.
-          </div>
-        `;
+        alert(
+          "Enter a username."
+        );
 
         return;
 
       }
 
-      results.forEach(userSnap => {
 
-        if(userSnap.id === currentUser.uid){
+      try{
+
+        const usersQuery =
+          query(
+            collection(
+              db,
+              "users"
+            ),
+            where(
+              "username",
+              "==",
+              username
+            ),
+            limit(5)
+          );
+
+
+        const results =
+          await getDocs(
+            usersQuery
+          );
+
+
+        const usersDiv =
+          document.getElementById(
+            "chatUsers"
+          );
+
+
+        usersDiv.innerHTML = "";
+
+
+        if(results.empty){
+
+          usersDiv.innerHTML = `
+            <div class="muted">
+              No user found.
+            </div>
+          `;
+
           return;
+
         }
 
-        const user =
-          userSnap.data();
 
-        const button =
-          document.createElement("button");
+        results.forEach(
+          userSnapshot => {
 
-        button.className =
-          "userChip";
+            if(
+              userSnapshot.id ===
+              currentUser.uid
+            ){
+              return;
+            }
 
-        button.textContent =
-          "@" +
-          (user.username || "player");
 
-        button.addEventListener(
-          "click",
-          () => {
+            const user =
+              userSnapshot.data();
 
-            openChat({
-              uid:userSnap.id,
-              username:
+
+            const button =
+              document.createElement(
+                "button"
+              );
+
+
+            button.className =
+              "userChip";
+
+
+            button.textContent =
+              "@" +
+              (
                 user.username ||
-                "player",
-              displayName:
-                user.displayName ||
-                "Player",
-              photo:
-                user.googlePhotoURL ||
-                defaultAvatar()
-            });
+                "player"
+              );
+
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                openChat({
+
+                  uid:
+                    userSnapshot.id,
+
+                  username:
+                    user.username ||
+                    "player",
+
+                  displayName:
+                    user.displayName ||
+                    "Player",
+
+                  photo:
+                    user.googlePhotoURL ||
+                    ""
+
+                });
+
+              }
+            );
+
+
+            usersDiv.appendChild(
+              button
+            );
 
           }
         );
 
-        usersDiv.appendChild(button);
+      }catch(error){
 
-      });
+        console.error(
+          "User search error:",
+          error
+        );
 
-    }catch(error){
 
-      console.error(error);
+        alert(
+          "Could not search users: " +
+          error.message
+        );
 
-      alert(
-        "Could not search users: " +
-        error.message
-      );
+      }
 
     }
+  );
 
-  });
 
+/* CHAT */
 
-/* =========================
-   CHAT
-========================= */
+function createChatId(
+  uid1,
+  uid2
+){
 
-function createChatId(uid1,uid2){
-
-  return [uid1,uid2]
-    .sort()
-    .join("_");
+  return [
+    uid1,
+    uid2
+  ]
+  .sort()
+  .join("_");
 
 }
 
@@ -1874,18 +2248,20 @@ function openChat(user){
   currentChatUser =
     user;
 
-  document.getElementById("chatTitle")
-    .textContent =
-      "Chat with @" +
-      user.username;
+
+  document.getElementById(
+    "chatTitle"
+  ).textContent =
+    "Chat with @" +
+    user.username;
+
 
   if(currentChatUnsubscribe){
 
     currentChatUnsubscribe();
 
-    currentChatUnsubscribe = null;
-
   }
+
 
   const chatId =
     createChatId(
@@ -1893,23 +2269,26 @@ function openChat(user){
       user.uid
     );
 
-  const messagesRef =
-    collection(
-      db,
-      "chats",
-      chatId,
-      "messages"
+
+  const messagesQuery =
+    query(
+      collection(
+        db,
+        "chats",
+        chatId,
+        "messages"
+      ),
+      orderBy(
+        "createdAt",
+        "asc"
+      ),
+      limit(100)
     );
 
-  const q = query(
-    messagesRef,
-    orderBy("createdAt","asc"),
-    limit(100)
-  );
 
   currentChatUnsubscribe =
     onSnapshot(
-      q,
+      messagesQuery,
       snapshot => {
 
         const window =
@@ -1917,48 +2296,65 @@ function openChat(user){
             "chatWindow"
           );
 
+
         window.innerHTML = "";
 
-        snapshot.forEach(messageSnap => {
 
-          const message =
-            messageSnap.data();
+        snapshot.forEach(
+          messageSnapshot => {
 
-          const div =
-            document.createElement("div");
+            const message =
+              messageSnapshot.data();
 
-          div.className =
-            "message";
 
-          if(
-            message.uid ===
-            currentUser.uid
-          ){
+            const div =
+              document.createElement(
+                "div"
+              );
 
-            div.classList.add("mine");
+
+            div.className =
+              "message";
+
+
+            if(
+              message.uid ===
+              currentUser.uid
+            ){
+
+              div.classList.add(
+                "mine"
+              );
+
+            }
+
+
+            div.innerHTML = `
+
+              <div class="messageName">
+                ${escapeHTML(
+                  message.username ||
+                  "Player"
+                )}
+              </div>
+
+              <div>
+                ${escapeHTML(
+                  message.text ||
+                  ""
+                )}
+              </div>
+
+            `;
+
+
+            window.appendChild(
+              div
+            );
 
           }
+        );
 
-          div.innerHTML = `
-
-            <div class="messageName">
-              ${escapeHTML(
-                message.username ||
-                "Player"
-              )}
-            </div>
-
-            <div>
-              ${escapeHTML(
-                message.text
-              )}
-            </div>
-
-          `;
-
-          window.appendChild(div);
-
-        });
 
         window.scrollTop =
           window.scrollHeight;
@@ -1966,7 +2362,11 @@ function openChat(user){
       },
       error => {
 
-        console.error(error);
+        console.error(
+          "Chat error:",
+          error
+        );
+
 
         document.getElementById(
           "chatWindow"
@@ -1983,23 +2383,35 @@ function openChat(user){
 
 
 document
-  .getElementById("sendMessage")
-  .addEventListener("click",sendMessage);
+  .getElementById(
+    "sendMessage"
+  )
+  .addEventListener(
+    "click",
+    sendMessage
+  );
 
 
 document
-  .getElementById("chatMessage")
-  .addEventListener("keydown",event => {
+  .getElementById(
+    "chatMessage"
+  )
+  .addEventListener(
+    "keydown",
+    event => {
 
-    if(event.key === "Enter"){
+      if(
+        event.key === "Enter"
+      ){
 
-      event.preventDefault();
+        event.preventDefault();
 
-      sendMessage();
+        sendMessage();
+
+      }
 
     }
-
-  });
+  );
 
 
 async function sendMessage(){
@@ -2009,21 +2421,29 @@ async function sendMessage(){
     !currentChatUser
   ){
 
-    alert("Select someone to chat with.");
+    alert(
+      "Select someone to chat with."
+    );
 
     return;
 
   }
 
+
   const input =
-    document.getElementById("chatMessage");
+    document.getElementById(
+      "chatMessage"
+    );
+
 
   const text =
     input.value.trim();
 
+
   if(!text){
     return;
   }
+
 
   if(text.length > 2000){
 
@@ -2035,11 +2455,13 @@ async function sendMessage(){
 
   }
 
+
   const chatId =
     createChatId(
       currentUser.uid,
       currentChatUser.uid
     );
+
 
   try{
 
@@ -2067,11 +2489,16 @@ async function sendMessage(){
       }
     );
 
+
     input.value = "";
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Message error:",
+      error
+    );
+
 
     alert(
       "Message could not be sent: " +
@@ -2083,99 +2510,104 @@ async function sendMessage(){
 }
 
 
-/* =========================
-   PARENT REQUEST
-========================= */
+/* PARENT REQUEST */
 
 document
-  .getElementById("requestParent")
-  .addEventListener("click", async () => {
+  .getElementById(
+    "requestParent"
+  )
+  .addEventListener(
+    "click",
+    async () => {
 
-    if(!currentUser){
-      return;
+      const email =
+        document.getElementById(
+          "parentEmailInput"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+      if(!email){
+
+        alert(
+          "Enter your parent's Google email."
+        );
+
+        return;
+
+      }
+
+
+      try{
+
+        await setDoc(
+          doc(
+            db,
+            "parentRequests",
+            currentUser.uid
+          ),
+          {
+
+            childUid:
+              currentUser.uid,
+
+            childName:
+              currentProfile.displayName ||
+              "Player",
+
+            parentEmail:
+              email,
+
+            status:
+              "pending",
+
+            parentUid:
+              null,
+
+            createdAt:
+              serverTimestamp()
+
+          }
+        );
+
+
+        document.getElementById(
+          "parentStatus"
+        ).innerHTML = `
+          <div class="success">
+            Parent request sent.
+          </div>
+        `;
+
+      }catch(error){
+
+        console.error(
+          "Parent request error:",
+          error
+        );
+
+
+        document.getElementById(
+          "parentStatus"
+        ).innerHTML = `
+          <div class="error">
+            Parent controls need the additional Firestore rules enabled.
+          </div>
+        `;
+
+      }
+
     }
-
-    const email =
-      document.getElementById(
-        "parentEmailInput"
-      ).value.trim().toLowerCase();
-
-    if(!email){
-
-      alert("Enter your parent's Google email.");
-
-      return;
-
-    }
-
-    try{
-
-      /*
-       Parent request document.
-       This does not use a child link code.
-      */
-
-      await setDoc(
-        doc(
-          db,
-          "parentRequests",
-          currentUser.uid
-        ),
-        {
-
-          childUid:
-            currentUser.uid,
-
-          childName:
-            currentProfile.displayName ||
-            "Player",
-
-          parentEmail:
-            email,
-
-          status:
-            "pending",
-
-          parentUid:
-            null,
-
-          createdAt:
-            serverTimestamp()
-
-        }
-      );
-
-      document.getElementById(
-        "parentStatus"
-      ).innerHTML = `
-        <div class="success">
-          Parent request sent. Your parent must approve it with their Google account.
-        </div>
-      `;
-
-    }catch(error){
-
-      console.error(error);
-
-      document.getElementById(
-        "parentStatus"
-      ).innerHTML = `
-        <div class="error">
-          Parent connection is not enabled by the current Firestore rules yet.
-        </div>
-      `;
-
-    }
-
-  });
+  );
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 document
-  .querySelectorAll(".nav button")
+  .querySelectorAll(
+    ".nav button"
+  )
   .forEach(button => {
 
     button.addEventListener(
@@ -2185,8 +2617,11 @@ document
         const page =
           button.dataset.page;
 
+
         document
-          .querySelectorAll(".page")
+          .querySelectorAll(
+            ".page"
+          )
           .forEach(section => {
 
             section.classList.remove(
@@ -2195,12 +2630,20 @@ document
 
           });
 
-        document
-          .getElementById(page)
-          .classList.add("active");
 
         document
-          .querySelectorAll(".nav button")
+          .getElementById(
+            page
+          )
+          .classList.add(
+            "active"
+          );
+
+
+        document
+          .querySelectorAll(
+            ".nav button"
+          )
           .forEach(btn => {
 
             btn.classList.remove(
@@ -2209,7 +2652,11 @@ document
 
           });
 
-        button.classList.add("active");
+
+        button.classList.add(
+          "active"
+        );
+
 
         window.scrollTo({
           top:0,
@@ -2222,12 +2669,12 @@ document
   });
 
 
-/* =========================
-   LOGOUT
-========================= */
+/* LOGOUT */
 
 document
-  .getElementById("logout")
+  .getElementById(
+    "logout"
+  )
   .addEventListener(
     "click",
     async () => {
@@ -2236,14 +2683,30 @@ document
 
         currentChatUnsubscribe();
 
-        currentChatUnsubscribe = null;
+        currentChatUnsubscribe =
+          null;
 
       }
+
 
       await signOut(auth);
 
     }
   );
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value || "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
 
 </script>
 
