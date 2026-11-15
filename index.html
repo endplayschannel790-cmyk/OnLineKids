@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#4f8cff">
+<meta name="description" content="OnLine Kids - a simpler, safer social app for young children.">
+<link rel="manifest" href="./manifest.json">
+<title>OnLine Kids</title>
+
+<style>
+:root{
+  --bg:#eef6ff;
+  --panel:#fff;
+  --ink:#17223b;
+  --muted:#63708b;
+  --blue:#4f8cff;
+  --purple:#8d62ff;
+  --line:#dce7f7;
+  --danger:#e95b70;
+  --good:#25a56a;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(160deg,#eaf4ff,#f7f0ff);
+  color:var(--ink);
+  font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  border-radius:14px;
+  padding:11px 15px;
+  background:linear-gradient(110deg,var(--blue),var(--purple));
+  color:#fff;
+  font-weight:750;
+  cursor:pointer;
+}
+
+button.secondary{
+  background:#edf3ff;
+  color:#29416f;
+  border:1px solid var(--line);
+}
+
+button.danger{
+  background:#ffe8ed;
+  color:#9d3044;
+  border:1px solid #ffd0d8;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#ffffffee;
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:13px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.brand{
+  font-size:25px;
+  font-weight:950;
+  background:linear-gradient(90deg,#3f86ff,#965cff);
+  color:transparent;
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+
+.wrap{
+  max-width:1050px;
+  margin:auto;
+  padding:18px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 10px 30px #4f8cff14;
+}
+
+h1,h2,h3{
+  margin:0 0 10px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.small{
+  font-size:12px;
+  color:var(--muted);
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fbfdff;
+  color:var(--ink);
+  outline:none;
+}
+
+input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px #4f8cff18;
+}
+
+.field{
+  margin:11px 0;
+}
+
+.row{
+  display:flex;
+  gap:9px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.row>*{
+  min-width:0;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.notice{
+  padding:13px;
+  border-radius:14px;
+  background:#eef5ff;
+  border:1px solid #d7e7ff;
+  margin:10px 0;
+}
+
+.warning{
+  background:#fff6df;
+  border-color:#ffe2a1;
+}
+
+.success{
+  background:#eafaf2;
+  border-color:#bfead2;
+}
+
+.error{
+  background:#fff0f3;
+  border-color:#ffcbd4;
+}
+
+nav{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding:10px 0 15px;
+}
+
+nav button{
+  white-space:nowrap;
+  background:#fff;
+  color:#53617e;
+  border:1px solid var(--line);
+}
+
+nav button.active{
+  background:linear-gradient(110deg,#4f8cff,#8d62ff);
+  color:#fff;
+  border-color:transparent;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 290px;
+  gap:15px;
+}
+
+.side{
+  position:sticky;
+  top:78px;
+  height:max-content;
+}
+
+.profile{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.avatar{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#4f8cff,#a46bff);
+  color:#fff;
+  font-size:20px;
+  font-weight:900;
+  flex:none;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.stat{
+  background:#f4f7ff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+}
+
+.stat b{
+  font-size:20px;
+  display:block;
+}
+
+.command-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+
+.command{
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#fbfdff;
+}
+
+.command h3{
+  font-size:15px;
+}
+
+.lock{
+  font-size:42px;
+  text-align:center;
+}
+
+.center{
+  text-align:center;
+}
+
+.pill{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#edf3ff;
+  color:#53617e;
+  font-size:12px;
+}
+
+#welcomeScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.welcome{
+  width:100%;
+  max-width:500px;
+  text-align:center;
+}
+
+.teddy{
+  font-size:75px;
+  margin-bottom:8px;
+}
+
+.loading{
+  text-align:center;
+  padding:40px 20px;
+}
+
+#app{
+  display:none;
+}
+
+#profilePage,
+#parentPage{
+  display:none;
+}
+
+.code{
+  font-size:22px;
+  letter-spacing:4px;
+  font-weight:900;
+  background:#f2f5ff;
+  border:1px dashed #aebde0;
+  padding:12px;
+  border-radius:13px;
+  text-align:center;
+  user-select:all;
+}
+
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+@media(max-width:800px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .side{
+    position:static;
+  }
+
+  .command-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:500px){
+  .stat-grid{
+    grid-template-columns:1fr;
+  }
+
+  .brand{
+    font-size:21px;
+  }
+
+  header{
+    padding:11px;
+  }
+
+  .wrap{
+    padding:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- WELCOME -->
+<section id="welcomeScreen">
+  <div class="welcome">
+    <div class="card">
+      <div class="teddy">🧸</div>
+
+      <div class="brand">OnLine Kids</div>
+
+      <h1 style="margin-top:10px;">
+        Welcome to OnLine Kids!
+      </h1>
+
+      <p class="muted">
+        A simpler, safer social space for young children.
+      </p>
+
+      <div class="notice warning">
+        <b>Safety first</b><br>
+        OnLine Kids is designed with child safety and parent involvement in mind.
+      </div>
+
+      <button id="googleBtn" style="width:100%;margin-top:8px;">
+        Continue with Google
+      </button>
+
+      <div id="loginError" class="notice error hidden"></div>
+
+      <p class="small" style="margin-top:15px;">
+        A Google account is required to continue.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="app">
+
+<header>
+  <div class="brand">OnLine Kids 🧸</div>
+
+  <div class="row">
+    <span id="statusPill" class="pill">Online</span>
+    <button id="signOutBtn" class="secondary">Sign Out</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav>
+  <button class="navBtn active" data-page="homePage">Home</button>
+  <button class="navBtn" data-page="profilePage">Profile</button>
+  <button class="navBtn" data-page="parentPage">Parent Controls</button>
+</nav>
+
+<!-- HOME -->
+<section id="homePage">
+
+  <div class="grid">
+
+    <div>
+
+      <div class="card">
+
+        <div class="profile">
+
+          <div id="homeAvatar" class="avatar">
+            P
+          </div>
+
+          <div>
+            <h2 id="homeDisplayName">Player</h2>
+            <div class="muted" id="homeUsername">
+              @player
+            </div>
+          </div>
+
+        </div>
+
+        <div class="stat-grid" style="margin-top:16px;">
+
+          <div class="stat">
+            <b id="crystalsCount">0</b>
+            <span class="small">Crystals</span>
+          </div>
+
+          <div class="stat">
+            <b id="blockedCount">0</b>
+            <span class="small">Blocked</span>
+          </div>
+
+          <div class="stat">
+            <b id="timeoutStatus">No</b>
+            <span class="small">Timeout</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h2>Parent Link</h2>
+
+        <p class="muted">
+          Give this code to your parent or guardian so they can link their parent account.
+        </p>
+
+        <div id="linkCode" class="code">
+          --------
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <button id="copyCodeBtn">
+            Copy Link Code
+          </button>
+
+          <span id="copyMessage" class="small"></span>
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h2>Safety Center</h2>
+
+        <div class="notice success">
+          <b>Stay safe</b><br>
+          Never share your password, home address, phone number, or other private information.
+        </div>
+
+        <div class="notice">
+          <b>Parent linked:</b>
+          <span id="parentStatus">No</span>
+        </div>
+
+        <div class="notice warning">
+          If something makes you uncomfortable, tell a parent or trusted adult.
+        </div>
+
+      </div>
+
+    </div>
+
+    <aside class="side">
+
+      <div class="card">
+
+        <h3>Quick Info</h3>
+
+        <p class="small">
+          Your parent can manage your timeout, blocked users, and Crystals.
+        </p>
+
+        <button
+          class="secondary"
+          style="width:100%;"
+          onclick="showPage('profilePage')">
+          Customize Profile
+        </button>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</section>
+
+<!-- PROFILE -->
+<section id="profilePage">
+
+  <div class="card">
+
+    <h2>Customize Profile</h2>
+
+    <p class="muted">
+      Change how your profile appears.
+    </p>
+
+    <div class="field">
+      <label>Display Name</label>
+      <input id="displayNameInput" maxlength="30" placeholder="Your display name">
+    </div>
+
+    <div class="field">
+      <label>Username</label>
+      <input id="usernameInput" maxlength="20" placeholder="Your username">
+    </div>
+
+    <div class="row">
+      <button id="saveProfileBtn">
+        Save Profile
+      </button>
+
+      <span id="profileMessage" class="small"></span>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Profile Preview</h2>
+
+    <div class="profile">
+
+      <div id="previewAvatar" class="avatar">
+        P
+      </div>
+
+      <div>
+        <h3 id="previewName">Player</h3>
+        <div class="muted" id="previewUsername">
+          @player
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PARENT CONTROLS -->
+<section id="parentPage">
+
+  <div id="parentLocked">
+
+    <div class="card center">
+
+      <div class="lock">🔒</div>
+
+      <h2>Parent Controls</h2>
+
+      <p class="muted">
+        This area is protected for parents or guardians.
+      </p>
+
+      <button id="unlockParentBtn">
+        Unlock Parent Controls
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="parentSetup" class="hidden">
+
+    <div class="card">
+
+      <h2>Create Parent Account</h2>
+
+      <p class="muted">
+        A parent or guardian must complete this setup.
+      </p>
+
+      <div class="field">
+        <label>Parent Email</label>
+        <input id="parentEmail" type="email" placeholder="parent@example.com">
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="parentPassword" type="password" placeholder="At least 8 characters">
+      </div>
+
+      <div class="field">
+        <label>Parent Date of Birth</label>
+        <input id="parentDob" type="date">
+      </div>
+
+      <div class="field">
+        <label>Child Link Code</label>
+        <input id="childLinkCode" maxlength="8" placeholder="Enter the child's code">
+      </div>
+
+      <div class="field">
+        <label>Parent Passcode</label>
+        <input id="parentPasscode" inputmode="numeric" maxlength="12" placeholder="4-12 digits">
+      </div>
+
+      <div id="parentSetupMessage" class="notice hidden"></div>
+
+      <button id="createParentBtn">
+        Create Parent Account
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="parentControls" class="hidden">
+
+    <div class="card">
+
+      <h2>Parent Controls</h2>
+
+      <div class="notice success">
+        Parent controls unlocked.
+      </div>
+
+      <div class="command-grid">
+
+        <div class="command">
+
+          <h3>Child</h3>
+
+          <p class="small">
+            Linked child
+          </p>
+
+          <b id="linkedChildName">
+            -
+          </b>
+
+        </div>
+
+        <div class="command">
+
+          <h3>Crystals</h3>
+
+          <p class="small">
+            Give your child Crystals
+          </p>
+
+          <div class="row">
+            <input id="crystalAmount" type="number" min="1" placeholder="Amount">
+            <button id="giveCrystalsBtn">
+              Give
+            </button>
+          </div>
+
+        </div>
+
+        <div class="command">
+
+          <h3>Timeout</h3>
+
+          <p class="small">
+            Set a timeout in minutes
+          </p>
+
+          <div class="row">
+            <input id="timeoutMinutes" type="number" min="1" placeholder="Minutes">
+            <button id="setTimeoutBtn">
+              Set
+            </button>
+          </div>
+
+        </div>
+
+        <div class="command">
+
+          <h3>Block User</h3>
+
+          <p class="small">
+            Block a username
+          </p>
+
+          <div class="row">
+            <input id="blockUsername" placeholder="Username">
+            <button id="blockUserBtn">
+              Block
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div style="margin-top:15px;">
+
+        <h3>Remove Block</h3>
+
+        <div class="row">
+
+          <input id="unblockUsername" placeholder="Username">
+
+          <button id="unblockUserBtn" class="secondary">
+            Remove Block
+          </button>
+
+        </div>
+
+      </div>
+
+      <div id="parentActionMessage" class="notice hidden"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  OnLine Kids · Built with safety in mind
+</footer>
+
+</main>
+
+</div>
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+
+/* FIREBASE */
+
+const firebaseConfig = {
+  apiKey:"AIzaSyCghg83g-uOUOT6PMSrS88sDeO55_HAfnI",
+  authDomain:"online-36946.firebaseapp.com",
+  projectId:"online-36946",
+  storageBucket:"online-36946.firebasestorage.app",
+  messagingSenderId:"862122300869",
+  appId:"1:862122300869:web:38f55cf996e0feb0b5e7ac",
+  measurementId:"G-6SRQR8M84V"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const googleProvider = new GoogleAuthProvider();
+
+
+/* HELPERS */
+
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+let currentProfile = null;
+let parentUnlocked = false;
+
+
+function showMessage(element, message, type="notice"){
+  if(!element) return;
+
+  element.className = "notice " + type;
+  element.textContent = message;
+  element.classList.remove("hidden");
+}
+
+
+function hideMessage(element){
+  if(!element) return;
+  element.classList.add("hidden");
+}
+
+
+function makeLinkCode(){
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let result = "";
+
+  for(let i=0;i<8;i++){
+    result += chars[Math.floor(Math.random()*chars.length)];
+  }
+
+  return result;
+}
+
+
+function safeUsername(value){
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9_]/g,"")
+    .slice(0,20);
+}
+
+
+function initials(name){
+  const value = String(name || "P").trim();
+
+  if(!value){
+    return "P";
+  }
+
+  return value.charAt(0).toUpperCase();
+}
+
+
+function showPage(pageId){
+
+  [
+    "homePage",
+    "profilePage",
+    "parentPage"
+  ].forEach(id=>{
+    const el = $(id);
+    if(el){
+      el.style.display = id === pageId ? "block" : "none";
+    }
+  });
+
+  document.querySelectorAll(".navBtn").forEach(btn=>{
+    btn.classList.toggle(
+      "active",
+      btn.dataset.page === pageId
+    );
+  });
+
+}
+
+
+window.showPage = showPage;
+
+
+/* GOOGLE SIGN IN */
+
+$("googleBtn").addEventListener("click", async ()=>{
+
+  hideMessage($("loginError"));
+
+  $("googleBtn").disabled = true;
+  $("googleBtn").textContent = "Signing in...";
+
+  try{
+
+    await signInWithPopup(auth,googleProvider);
+
+  }catch(error){
+
+    console.error(error);
+
+    let message = "Unable to sign in right now.";
+
+    if(error.code === "auth/popup-closed-by-user"){
+      message = "The sign-in window was closed.";
+    }
+
+    if(error.code === "auth/popup-blocked"){
+      message = "Your browser blocked the sign-in popup.";
+    }
+
+    showMessage(
+      $("loginError"),
+      message,
+      "error"
+    );
+
+  }finally{
+
+    $("googleBtn").disabled = false;
+    $("googleBtn").textContent = "Continue with Google";
+
+  }
+
+});
+
+
+/* SIGN OUT */
+
+$("signOutBtn").addEventListener("click", async ()=>{
+
+  try{
+    await signOut(auth);
+  }catch(error){
+    console.error(error);
+  }
+
+});
+
+
+/* NAVIGATION */
+
+document.querySelectorAll(".navBtn").forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+
+    showPage(btn.dataset.page);
+
+  });
+
+});
+
+
+/* LOAD PROFILE */
+
+async function loadProfile(user){
+
+  const ref = doc(db,"kidsUsers",user.uid);
+  const snap = await getDoc(ref);
+
+  if(snap.exists()){
+
+    currentProfile = snap.data();
+
+  }else{
+
+    const firstName =
+      user.displayName ||
+      "Player";
+
+    const username =
+      "player_" +
+      user.uid
+        .slice(0,5)
+        .toLowerCase();
+
+    currentProfile = {
+
+      uid:user.uid,
+
+      displayName:firstName,
+
+      username:username,
+
+      crystals:0,
+
+      blockedUsers:[],
+
+      timeoutUntil:0,
+
+      parentLinkCode:makeLinkCode(),
+
+      parentUid:null,
+
+      createdAt:serverTimestamp()
+
+    };
+
+    await setDoc(ref,currentProfile);
+
+  }
+
+  renderProfile();
+
+}
+
+
+/* RENDER PROFILE */
+
+function renderProfile(){
+
+  if(!currentProfile){
+    return;
+  }
+
+  const name =
+    currentProfile.displayName ||
+    "Player";
+
+  const username =
+    currentProfile.username ||
+    "player";
+
+  const crystals =
+    Number(currentProfile.crystals || 0);
+
+  const blocked =
+    Array.isArray(currentProfile.blockedUsers)
+      ? currentProfile.blockedUsers
+      : [];
+
+  const timeoutUntil =
+    Number(currentProfile.timeoutUntil || 0);
+
+  $("homeDisplayName").textContent = name;
+
+  $("homeUsername").textContent =
+    "@" + username;
+
+  $("homeAvatar").textContent =
+    initials(name);
+
+  $("crystalsCount").textContent =
+    crystals;
+
+  $("blockedCount").textContent =
+    blocked.length;
+
+  $("linkCode").textContent =
+    currentProfile.parentLinkCode || "--------";
+
+  $("parentStatus").textContent =
+    currentProfile.parentUid
+      ? "Yes"
+      : "No";
+
+  if(timeoutUntil && timeoutUntil > Date.now()){
+
+    $("timeoutStatus").textContent = "Yes";
+
+  }else{
+
+    $("timeoutStatus").textContent = "No";
+
+  }
+
+  $("displayNameInput").value = name;
+
+  $("usernameInput").value = username;
+
+  $("previewName").textContent = name;
+
+  $("previewUsername").textContent =
+    "@" + username;
+
+  $("previewAvatar").textContent =
+    initials(name);
+
+}
+
+
+/* SAVE PROFILE */
+
+$("saveProfileBtn").addEventListener("click", async ()=>{
+
+  if(!currentUser || !currentProfile){
+    return;
+  }
+
+  const displayName =
+    $("displayNameInput").value.trim();
+
+  const username =
+    safeUsername($("usernameInput").value);
+
+  if(displayName.length < 1){
+
+    showMessage(
+      $("profileMessage"),
+      "Please enter a display name.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(username.length < 3){
+
+    showMessage(
+      $("profileMessage"),
+      "Your username must be at least 3 characters.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        displayName:displayName,
+        username:username
+      }
+    );
+
+    currentProfile.displayName =
+      displayName;
+
+    currentProfile.username =
+      username;
+
+    renderProfile();
+
+    showMessage(
+      $("profileMessage"),
+      "Profile saved!",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      $("profileMessage"),
+      "Could not save your profile.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* COPY LINK CODE */
+
+$("copyCodeBtn").addEventListener("click", async ()=>{
+
+  const code =
+    currentProfile?.parentLinkCode;
+
+  if(!code){
+    return;
+  }
+
+  try{
+
+    await navigator.clipboard.writeText(code);
+
+    $("copyMessage").textContent =
+      "Copied!";
+
+    setTimeout(()=>{
+      $("copyMessage").textContent = "";
+    },2000);
+
+  }catch(error){
+
+    $("copyMessage").textContent =
+      "Code: " + code;
+
+  }
+
+});
+
+
+/* PARENT UNLOCK */
+
+$("unlockParentBtn").addEventListener("click", ()=>{
+
+  if(!currentProfile){
+    return;
+  }
+
+  if(currentProfile.parentUid){
+
+    const passcode =
+      prompt("Enter the parent passcode:");
+
+    if(!passcode){
+      return;
+    }
+
+    unlockExistingParent(passcode);
+
+  }else{
+
+    $("parentLocked").classList.add("hidden");
+    $("parentSetup").classList.remove("hidden");
+
+  }
+
+});
+
+
+async function unlockExistingParent(passcode){
+
+  try{
+
+    const parentRef =
+      doc(db,"parentAccounts",currentProfile.parentUid);
+
+    const snap =
+      await getDoc(parentRef);
+
+    if(!snap.exists()){
+
+      alert("Parent account could not be found.");
+
+      return;
+
+    }
+
+    const data = snap.data();
+
+    if(
+      data.passcodeHash &&
+      data.passcodeHash === btoa(passcode)
+    ){
+
+      parentUnlocked = true;
+
+      $("parentLocked").classList.add("hidden");
+      $("parentSetup").classList.add("hidden");
+      $("parentControls").classList.remove("hidden");
+
+      $("linkedChildName").textContent =
+        currentProfile.displayName || "Player";
+
+    }else{
+
+      alert("Incorrect parent passcode.");
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Could not unlock parent controls.");
+
+  }
+
+}
+
+
+/* CREATE PARENT ACCOUNT */
+
+$("createParentBtn").addEventListener("click", async ()=>{
+
+  const email =
+    $("parentEmail").value.trim();
+
+  const password =
+    $("parentPassword").value;
+
+  const dob =
+    $("parentDob").value;
+
+  const childCode =
+    $("childLinkCode").value
+      .trim()
+      .toUpperCase();
+
+  const passcode =
+    $("parentPasscode").value.trim();
+
+  const message =
+    $("parentSetupMessage");
+
+  hideMessage(message);
+
+  if(!email || !password || !dob || !childCode || !passcode){
+
+    showMessage(
+      message,
+      "Please complete every field.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(password.length < 8){
+
+    showMessage(
+      message,
+      "The parent password must be at least 8 characters.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(!/^[0-9]{4,12}$/.test(passcode)){
+
+    showMessage(
+      message,
+      "The parent passcode must contain 4-12 digits.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  const birthDate =
+    new Date(dob);
+
+  const today =
+    new Date();
+
+  let age =
+    today.getFullYear() -
+    birthDate.getFullYear();
+
+  const monthDiff =
+    today.getMonth() -
+    birthDate.getMonth();
+
+  if(
+    monthDiff < 0 ||
+    (
+      monthDiff === 0 &&
+      today.getDate() < birthDate.getDate()
+    )
+  ){
+    age--;
+  }
+
+  if(age < 18){
+
+    showMessage(
+      message,
+      "A parent or guardian must be at least 18 years old.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(
+    childCode !==
+    String(currentProfile.parentLinkCode || "")
+      .toUpperCase()
+  ){
+
+    showMessage(
+      message,
+      "That child link code is incorrect.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  $("createParentBtn").disabled = true;
+  $("createParentBtn").textContent =
+    "Creating...";
+
+  try{
+
+    const credential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const parentUid =
+      credential.user.uid;
+
+    await setDoc(
+      doc(db,"parentAccounts",parentUid),
+      {
+        uid:parentUid,
+        email:email,
+        childUid:currentUser.uid,
+        adultVerified:true,
+        verifiedAt:serverTimestamp(),
+        passcodeHash:btoa(passcode),
+        createdAt:serverTimestamp()
+      }
+    );
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        parentUid:parentUid
+      }
+    );
+
+    currentProfile.parentUid =
+      parentUid;
+
+    renderProfile();
+
+    $("parentSetup").classList.add("hidden");
+    $("parentControls").classList.remove("hidden");
+
+    $("linkedChildName").textContent =
+      currentProfile.displayName || "Player";
+
+    parentUnlocked = true;
+
+    showMessage(
+      $("parentActionMessage"),
+      "Parent account created successfully.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    let messageText =
+      "Could not create the parent account.";
+
+    if(error.code === "auth/email-already-in-use"){
+      messageText =
+        "That parent email is already being used.";
+    }
+
+    if(error.code === "auth/invalid-email"){
+      messageText =
+        "Please enter a valid parent email.";
+    }
+
+    if(error.code === "auth/weak-password"){
+      messageText =
+        "The parent password is too weak.";
+    }
+
+    showMessage(
+      message,
+      messageText,
+      "error"
+    );
+
+  }finally{
+
+    $("createParentBtn").disabled = false;
+    $("createParentBtn").textContent =
+      "Create Parent Account";
+
+  }
+
+});
+
+
+/* GIVE CRYSTALS */
+
+$("giveCrystalsBtn").addEventListener("click", async ()=>{
+
+  if(!parentUnlocked || !currentUser){
+    return;
+  }
+
+  const amount =
+    Number($("crystalAmount").value);
+
+  if(!Number.isFinite(amount) || amount < 1){
+
+    showMessage(
+      $("parentActionMessage"),
+      "Enter a valid Crystal amount.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  try{
+
+    const childRef =
+      doc(db,"kidsUsers",currentUser.uid);
+
+    const latest =
+      await getDoc(childRef);
+
+    const latestData =
+      latest.exists()
+        ? latest.data()
+        : currentProfile;
+
+    const newAmount =
+      Number(latestData.crystals || 0) +
+      amount;
+
+    await updateDoc(
+      childRef,
+      {
+        crystals:newAmount
+      }
+    );
+
+    currentProfile.crystals =
+      newAmount;
+
+    renderProfile();
+
+    $("crystalAmount").value = "";
+
+    showMessage(
+      $("parentActionMessage"),
+      amount + " Crystals given.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      $("parentActionMessage"),
+      "Could not give Crystals.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* SET TIMEOUT */
+
+$("setTimeoutBtn").addEventListener("click", async ()=>{
+
+  if(!parentUnlocked || !currentUser){
+    return;
+  }
+
+  const minutes =
+    Number($("timeoutMinutes").value);
+
+  if(!Number.isFinite(minutes) || minutes < 1){
+
+    showMessage(
+      $("parentActionMessage"),
+      "Enter a valid number of minutes.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  const until =
+    Date.now() +
+    minutes * 60 * 1000;
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        timeoutUntil:until
+      }
+    );
+
+    currentProfile.timeoutUntil =
+      until;
+
+    renderProfile();
+
+    $("timeoutMinutes").value = "";
+
+    showMessage(
+      $("parentActionMessage"),
+      "Timeout set for " + minutes + " minutes.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      $("parentActionMessage"),
+      "Could not set the timeout.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* BLOCK USER */
+
+$("blockUserBtn").addEventListener("click", async ()=>{
+
+  if(!parentUnlocked || !currentUser){
+    return;
+  }
+
+  const username =
+    safeUsername($("blockUsername").value);
+
+  if(!username){
+
+    showMessage(
+      $("parentActionMessage"),
+      "Enter a username to block.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        blockedUsers:arrayUnion(username)
+      }
+    );
+
+    if(!Array.isArray(currentProfile.blockedUsers)){
+      currentProfile.blockedUsers = [];
+    }
+
+    if(!currentProfile.blockedUsers.includes(username)){
+      currentProfile.blockedUsers.push(username);
+    }
+
+    renderProfile();
+
+    $("blockUsername").value = "";
+
+    showMessage(
+      $("parentActionMessage"),
+      "User blocked.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      $("parentActionMessage"),
+      "Could not block that user.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* UNBLOCK USER */
+
+$("unblockUserBtn").addEventListener("click", async ()=>{
+
+  if(!parentUnlocked || !currentUser){
+    return;
+  }
+
+  const username =
+    safeUsername($("unblockUsername").value);
+
+  if(!username){
+
+    showMessage(
+      $("parentActionMessage"),
+      "Enter a username to remove.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await updateDoc(
+      doc(db,"kidsUsers",currentUser.uid),
+      {
+        blockedUsers:arrayRemove(username)
+      }
+    );
+
+    if(Array.isArray(currentProfile.blockedUsers)){
+
+      currentProfile.blockedUsers =
+        currentProfile.blockedUsers.filter(
+          name => name !== username
+        );
+
+    }
+
+    renderProfile();
+
+    $("unblockUsername").value = "";
+
+    showMessage(
+      $("parentActionMessage"),
+      "User unblocked.",
+      "success"
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      $("parentActionMessage"),
+      "Could not remove that block.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(auth, async user=>{
+
+  if(!user){
+
+    currentUser = null;
+    currentProfile = null;
+
+    $("welcomeScreen").style.display =
+      "flex";
+
+    $("app").style.display =
+      "none";
+
+    return;
+
+  }
+
+  currentUser = user;
+
+  $("welcomeScreen").style.display =
+    "none";
+
+  $("app").style.display =
+    "block";
+
+  try{
+
+    await loadProfile(user);
+
+    showPage("homePage");
+
+  }catch(error){
+
+    console.error(error);
+
+    $("app").style.display =
+      "block";
+
+    $("homePage").style.display =
+      "block";
+
+    showMessage(
+      $("homePage").querySelector(".card"),
+      "Your account loaded, but your profile data could not be loaded. Please try again.",
+      "error"
+    );
+
+  }
+
+});
+
+
+/* SERVICE WORKER */
+
+if("serviceWorker" in navigator){
+
+  window.addEventListener("load",()=>{
+
+    navigator.serviceWorker
+      .register("./sw.js")
+      .then(()=>{
+        console.log("OnLine Kids service worker registered.");
+      })
+      .catch(error=>{
+        console.warn(
+          "Service worker registration failed:",
+          error
+        );
+      });
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
